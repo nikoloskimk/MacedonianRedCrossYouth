@@ -4,10 +4,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Crven Krst</title>
+    <title>Млади на Црвен Крст на Р. Македонија</title>
     <link href="content/css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top" style="border-bottom-color: red;" role="navigation">
@@ -21,15 +19,15 @@
         </div>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="Default1.aspx" id="Kalendar">Календар</a></li>
-                <li><a href="Volonter.aspx" id="Volonter">Волонтери</a></li>
-                <li><a href="Clenovi.aspx" id="Clenovi">Членови</a></li>
-                <li><a href="Dokumenti.aspx" id="Dokumenti">Документи</a></li>
+                    <li><a href="Default1.aspx" id="Kalendar">Календар</a></li>
+                    <li><a href="Volonter.aspx" id="Volonter">Волонтери</a></li>
+                    <li><a href="Clenovi.aspx" id="Clenovi">Членови</a></li>
+                    <li><a href="Dokumenti.aspx" id="Dokumenti">Документи</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" style="padding-right: 30px;">
                 <li style="border-right-color: red;"><a href="Korisnik.aspx" id="Korisnik">Кристијан Миланов</a></li>
                 <p class="navbar-text" style="color: red; height: 10px;">|</p>
-                <li><a href="Login.aspx" id="Log out">Одјави се</a></li>
+                <li><a href="Logout.aspx" id="btnLogout">Одјави се</a></li>
             </ul>
         </div>
     </nav>

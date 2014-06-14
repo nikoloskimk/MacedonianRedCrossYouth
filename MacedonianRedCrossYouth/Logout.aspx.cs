@@ -5,18 +5,14 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CrvenKrst
+namespace MacedonianRedCrossYouth
 {
-    public partial class Master1 : System.Web.UI.MasterPage
+    public partial class Logout : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["user_id"] == null)
-            {
-            }
-            else
-            {
-            }
+            Session.Abandon();
+            Response.Redirect("Default.aspx");
         }
     }
 }
