@@ -2,10 +2,15 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentplaceHolder1" runat="server">
     <form runat="server">
-        <asp:Button ID="addUser" runat="server" Text="Додади волонтер" OnClick="addUser_Click" />
-        <br />
-        <br />
+        Volonteurs
+            <asp:TextBox ID="txtDate" runat="server"></asp:TextBox>
     </form>
 
+    <!-- load datepicker -->
+    <script type="text/javascript">
+        $(function () {
+            $("#ContentplaceHolder1_txtDate").datepicker();
+        });
+    </script>
 </asp:Content>
 

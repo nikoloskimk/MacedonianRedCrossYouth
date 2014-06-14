@@ -18,6 +18,9 @@ namespace CrvenKrst
                 case "/Volonteri.aspx":
                     liVolonteri.Attributes.Add("class", "active");
                     break;
+                case "/AddUser.aspx":
+                    liVolonteri.Attributes.Add("class", "active");
+                    break;
                 case "/Default.aspx":
                     liKalendar.Attributes.Add("class", "active");
                     break;

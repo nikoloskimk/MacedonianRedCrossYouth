@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master1.Master" AutoEventWireup="true" CodeBehind="AddUser.aspx.cs" Inherits="MacedonianRedCrossYouth.AddUser" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentplaceHolder1" runat="server">
     <form id="form1" runat="server">
-        <table style="width: auto; margin: auto;">
+        <table style="width: auto">
             <tr>
-                <td colspan="2" style="background-color: #bcbcbc">Лични податоци</td>
+                <td colspan="2" style="background-color: #808080">Лични податоци</td>
             </tr>
             <tr>
                 <td style="width: 185px">Име:</td>
@@ -15,6 +15,7 @@
                 </td>
                 <td>
                     <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                    <asp:Button ID="Button1" runat="server" Text="Button" />
                 </td>
             </tr>
             <tr>
@@ -24,12 +25,10 @@
             <tr>
                 <td style="width: 185px">
                     <asp:DropDownList ID="DropDownList1" runat="server">
-                        <asp:ListItem Value="1">Машки</asp:ListItem>
-                        <asp:ListItem Value="2">Женски</asp:ListItem>
                     </asp:DropDownList>
                 </td>
                 <td>
-                    <asp:TextBox ID="tbDatumRaganje" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -39,22 +38,13 @@
             <tr>
                 <td style="width: 185px">
                     <asp:DropDownList ID="DropDownList2" runat="server">
-                        <asp:ListItem>македонец</asp:ListItem>
-                        <asp:ListItem>влав</asp:ListItem>
-                        <asp:ListItem>албанец</asp:ListItem>
-                        <asp:ListItem>србин</asp:ListItem>
-                        <asp:ListItem>бошњак</asp:ListItem>
-                        <asp:ListItem>останато</asp:ListItem>
                     </asp:DropDownList>
                 </td>
                 <td>
-                    <asp:DropDownList ID="ddZanimanje" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddZanimanje_SelectedIndexChanged">
-                        <asp:ListItem></asp:ListItem>
-                        <asp:ListItem>вработен</asp:ListItem>
-                        <asp:ListItem>студент</asp:ListItem>
+                    <asp:DropDownList ID="DropDownList3" runat="server">
                     </asp:DropDownList>
 &nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:DropDownList ID="ddFakulteti" runat="server" Visible="False">
+                    <asp:DropDownList ID="DropDownList4" runat="server" Visible="False">
                     </asp:DropDownList>
                 </td>
             </tr>
@@ -64,7 +54,7 @@
             </tr>
             <tr>
                 <td style="width: 185px">
-                    <asp:TextBox ID="tbDatumPristap" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
                 </td>
                 <td>Организација:</td>
             </tr>
@@ -73,12 +63,12 @@
                     <asp:CheckBox ID="Aktiven" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" Text="Активен" TextAlign="Left" />
                 </td>
                 <td>
-                    <asp:DropDownList ID="ddOrganizations" runat="server">
+                    <asp:DropDownList ID="DropDownList5" runat="server">
                     </asp:DropDownList>
                 </td>
             </tr>
             <tr>
-                <td colspan="2" style="background-color: #bcbcbc; height: 20px;">Контакт</td>
+                <td colspan="2" style="background-color: #808080; height: 20px;">Контакт</td>
             </tr>
             <tr>
                 <td style="width: 185px">Адреса:</td>
@@ -106,7 +96,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2" style="height: 20px; background-color: #bcbcbc;">Членство</td>
+                <td colspan="2" style="height: 20px; background-color: #808080;">Членство</td>
             </tr>
             <tr>
                 <td style="height: 25px; width: 185px">
@@ -116,34 +106,6 @@
                     <asp:TextBox ID="TextBox12" runat="server" Width="154px"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
-                <td colspan="2">
-                    <br />
-                     <asp:Button ID="Button1" runat="server" Text="Додади корисник" />
-
-                </td>
-            </tr>
         </table>
-
     </form>
-
-        <!-- load datepicker -->
-    <style>
-        select {
-            color: black;
-        }
-    </style>
-    <script type="text/javascript">
-        $(function () {
-            $("#ContentplaceHolder1_tbDatumRaganje").datepicker({
-                changeMonth: true,
-                changeYear: true
-            });
-
-            $("#ContentplaceHolder1_tbDatumPristap").datepicker({
-                changeMonth: true,
-                changeYear: true
-            });
-        });
-    </script>
 </asp:Content>

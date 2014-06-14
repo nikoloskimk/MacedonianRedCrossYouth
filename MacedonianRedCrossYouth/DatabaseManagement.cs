@@ -17,6 +17,36 @@ namespace MacedonianRedCrossYouth
             return konekcija;
         }
 
+        public static List<Organization> getOrganizations()
+        {
+            List<Organization> organizations = new List<Organization>();
+            SqlConnection konekcija = getConnection();
+            string sqlString = "SELECT * FROM Organizations";
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            try
+            {
+                konekcija.Open();
+                SqlDataReader citac = komanda.ExecuteReader();
+                while (citac.Read())
+                {
+
+                    Organization o = new Organization(int.Parse(citac[0].ToString()), citac[1].ToString());
+                    organizations.Add(o);
+                    
+                }
+            }
+            catch (Exception err)
+            {
+                
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+
+            return organizations;
+        }
+
         public static User authenticateUser(string username, string password)
         {
             SqlConnection konekcija = getConnection();

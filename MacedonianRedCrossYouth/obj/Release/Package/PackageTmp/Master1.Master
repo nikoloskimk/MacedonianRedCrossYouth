@@ -9,29 +9,7 @@
     <link href="content/css/jquery-ui-1.10.4.css" rel="stylesheet" type="text/css" />
     <style>
         .container {
-            min-height: 580px;
-            border-left: 1px solid #929292;
-            border-right: 1px solid #929292;
-            border-bottom: 0px;
-        }
-
-
-        body {
-            background-color: #fcfcfc;
-        }
-
-        #footer {
-            border-top-color: #c7c7c7;
-            
-            border-left: 1px solid #929292;
-            border-right: 1px solid #929292;
-            min-height: 10px;
-            border-radius: 0px;
-            padding: 0px;
-            margin: auto;
-            width: 1000px;
-            color: #343233;
-
+            min-height: 555px;
         }
     </style>
 </head>
@@ -47,10 +25,10 @@
         </div>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav">
-                <li id="liKalendar" runat="server"><a href="Default.aspx" id="Aktivnosti">Активности</a></li>
-                <li id="liVolonteri" runat="server"><a href="Volonteri.aspx" id="Volonteri">Волонтери</a></li>
-                <li><a href="Clenovi.aspx" id="Clenovi">Членови</a></li>
-                <li><a href="Dokumenti.aspx" id="Dokumenti">Документи</a></li>
+                    <li id="liKalendar" runat="server"><a href="Default.aspx" id="Aktivnosti">Активности</a></li>
+                    <li id="liVolonteri" runat="server"><a href="Volonteri.aspx" id="Volonteri">Волонтери</a></li>
+                    <li><a href="Clenovi.aspx" id="Clenovi">Членови</a></li>
+                    <li><a href="Dokumenti.aspx" id="Dokumenti">Документи</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" style="padding-right: 30px;">
                 <li style="border-right-color: red;"><a href="Korisnik.aspx" id="Korisnik">
@@ -64,13 +42,15 @@
     <script src="Scripts/bootstrap.min.js"></script>
     <script src="Scripts/jquery-ui-1.10.4.js"></script>
 
-    <div class="container" style="margin-top: 50px; padding-top: 10px; width: 1000px; background-color: white;">
+    <div class="container" style="margin-top:60px;">
         <asp:ContentPlaceHolder ID="ContentplaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
     </div>
-    <div id="footer" class="navbar navbar-default">
-        <p style="text-align: center; vertical-align: central; padding-top: 5px">Црвен Крст на Република Македонија © 2014. Сите права се задржани.</p>
-    </div>
 
+    <nav class="navbar navbar-default navbar-bottom" style="border-top-color: #929292; color: #343233; margin-bottom: -15px;" role="note">
+        <div class="navbar-footer">
+            <p style="text-align: center; vertical-align: central; padding-top: 5px">Црвен Крст на Република Македонија © 2014. Сите права се задржани.</p>
+        </div>
+    </nav>
 </body>
 </html>

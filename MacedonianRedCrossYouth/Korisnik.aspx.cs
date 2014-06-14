@@ -7,16 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace MacedonianRedCrossYouth
 {
-    public partial class Volonteri : System.Web.UI.Page
+    public partial class Korisnik : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
-        }
-
-        protected void addUser_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("AddUser.aspx");
         }
     }
 }
