@@ -30,5 +30,15 @@ namespace MacedonianRedCrossYouth
             this.organization_id = organization_id;
             this.role_id = role_id;
         }
+
+        public string getFullName()
+        {
+            return this.first_name + " " + this.last_name;
+        }
+
+        public int getUserID()
+        {
+            return this.user_id;
+        }
     }
 }

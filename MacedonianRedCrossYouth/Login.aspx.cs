@@ -11,31 +11,25 @@ namespace MacedonianRedCrossYouth
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (Session["user_id"] != null)
+            {
+                Response.Redirect("Default.aspx");
+            }
         }
 
         protected void btnNajaviSe_Click(object sender, EventArgs e)
         {
-            if (tbUsername.Text != "" && tbPassword.Text != "")
+            User u = DatabaseManagement.authenticateUser(tbUsername.Text, tbPassword.Text);
+            if (u != null)
             {
-                // SELECT FROM DATABASE
+                Session["user_id"] = u.getUserID();
+                Session["full_name"] = u.getFullName();
+                Response.Redirect("Default.aspx");
 
-
-                User u = DatabaseManagement.authenticateUser(tbUsername.Text, tbPassword.Text);
-                if (u != null)
-                {
-                    Session["user_id"] = 5;
-                    Response.Redirect("Default.aspx");
-
-                }
-                else
-                {
-                    lblError.Text = "Внесовте погрешно корисничко име или лозинка. Обидете се повторно.";
-                }
             }
             else
             {
-                lblError.Text = "Внесовте погрешно корисничко име или лозинка. Обидете се повторно.";
+                lblError.Text = "Неуспешна најава. Обидете се повторно.";
             }
         }
     }
