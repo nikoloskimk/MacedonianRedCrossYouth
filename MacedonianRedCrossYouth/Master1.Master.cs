@@ -11,12 +11,29 @@ namespace CrvenKrst
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["user_id"] == null)
+            string path = HttpContext.Current.Request.Url.AbsolutePath;
+
+            switch (path)
             {
+                case "/Volonteri.aspx":
+                    liVolonteri.Attributes.Add("class", "active");
+                    break;
+                case "/Default.aspx":
+                    liKalendar.Attributes.Add("class", "active");
+                    break;
+                default:
+                    liKalendar.Attributes.Add("class", "active");
+                    break;
+            }
+
+            if (Session["user_id"] != null)
+            {
+                lblUser.Text = (string) Session["full_name"];
             }
             else
             {
             }
+
         }
     }
 }
