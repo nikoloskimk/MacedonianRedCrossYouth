@@ -47,14 +47,16 @@
         </div>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav">
-                <li id="liKalendar" runat="server"><a href="Default.aspx" id="Aktivnosti">Активности</a></li>
+                <li id="liAktivnosti" runat="server"><a href="Default.aspx" id="Aktivnosti">Активности</a></li>
                 <li id="liVolonteri" runat="server"><a href="Volonteri.aspx" id="Volonteri">Волонтери</a></li>
                 <li><a href="Clenovi.aspx" id="Clenovi">Членови</a></li>
                 <li><a href="Dokumenti.aspx" id="Dokumenti">Документи</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" style="padding-right: 30px;">
-                <li style="border-right-color: red;"><a href="Korisnik.aspx" id="Korisnik">
-                    <asp:Label ID="lblUser" runat="server" Text=""></asp:Label></a></li>
+                <li id="liKorisnik" runat="server" style="border-right-color: red;">
+                    <a href="Korisnik.aspx" id="Korisnik">
+                    <asp:Label ID="lblUser" runat="server" Text=""></asp:Label></a>
+                </li>
                 <p class="navbar-text" style="color: red; height: 10px;">|</p>
                 <li><a href="Logout.aspx" id="btnLogout">Одјави се</a></li>
             </ul>

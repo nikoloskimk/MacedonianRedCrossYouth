@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -13,11 +16,23 @@ namespace MacedonianRedCrossYouth
         {
             if (!IsPostBack)
             {
+                //organizations
                 List<Organization> organizations = DatabaseManagement.getOrganizations();
+                ddOrganizations.Items.Add(new ListItem("", "0"));
 
                 foreach(Organization o in organizations) {
                     ListItem l = new ListItem(o.getName(), o.getOrganizationID().ToString());
                     ddOrganizations.Items.Add(l);
+                }
+
+                //nationalities
+                List<Nationality> nationalities = DatabaseManagement.getNationalities();
+                ddNationalities.Items.Add(new ListItem("", "0"));
+
+                foreach (Nationality o in nationalities)
+                {
+                    ListItem l = new ListItem(o.getName(), o.getNationalityID().ToString());
+                    ddNationalities.Items.Add(l);
                 }
 
             }
@@ -43,6 +58,148 @@ namespace MacedonianRedCrossYouth
             {
                 ddFakulteti.Visible = false;
             }
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Validate("g");
+            /*
+            if (FileUpload1.HasFile)
+                // Call a helper method routine to save the file.
+                SaveFile(FileUpload1.PostedFile);
+            */
+            UploadFile(sender, e);
+        }
+
+        protected void UploadFile(Object s, EventArgs e)
+        {
+            // First we check to see if the user has selected a file
+            if (FileUpload1.HasFile)
+            {
+                // Find the fileUpload control
+                string filename = FileUpload1.FileName;
+
+                // Check if the directory we want the image uploaded to actually exists or not
+                if (!Directory.Exists(MapPath(@"Uploaded-Files")))
+                {
+                    // If it doesn't then we just create it before going any further
+                    Directory.CreateDirectory(MapPath(@"Uploaded-Files"));
+                }
+
+                // Specify the upload directory
+                string directory = Server.MapPath(@"Uploaded-Files\");
+
+                // Create a bitmap of the content of the fileUpload control in memory
+                Bitmap originalBMP = new Bitmap(FileUpload1.FileContent);
+
+                // Calculate the new image dimensions
+                /*
+                int origWidth = originalBMP.Width;
+                int origHeight = originalBMP.Height;
+                int sngRatio = origWidth / origHeight;
+                int newWidth = 100;
+                int newHeight = newWidth / sngRatio;
+                */
+
+                decimal origWidth = originalBMP.Width;
+                decimal origHeight = originalBMP.Height;
+                decimal sngRatio = origHeight / origWidth;
+                int newHeight = 240; //hight in pixels 
+                decimal newWidth_temp = newHeight / sngRatio;
+                int newWidth = 180; 
+
+                // Create a new bitmap which will hold the previous resized bitmap
+                Bitmap newBMP = new Bitmap(originalBMP, newWidth, newHeight);
+                // Create a graphic based on the new bitmap
+                Graphics oGraphics = Graphics.FromImage(newBMP);
+
+                // Set the properties for the new graphic file
+                oGraphics.SmoothingMode = SmoothingMode.AntiAlias; oGraphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                // Draw the new graphic based on the resized bitmap
+                oGraphics.DrawImage(originalBMP, 0, 0, newWidth, newHeight);
+
+                // Save the new graphic file to the server
+                newBMP.Save(directory + "tn_" + filename);
+
+                // Once finished with the bitmap objects, we deallocate them.
+                originalBMP.Dispose();
+                newBMP.Dispose();
+                oGraphics.Dispose();
+
+                
+                // Display the image to the user
+               // img1.Visible = true;
+               // img1.ImageUrl = @"/Uploaded-Files/tn_" + filename;
+                
+              //  UploadStatusLabel.Text = "Successfull";
+            }
+            else
+            {
+             //   UploadStatusLabel.Text = "No file uploaded!";
+            }
+        }
+
+        void SaveFile(HttpPostedFile file)
+        {
+
+            // Specify the path to save the uploaded file to.
+            string appPath = HttpContext.Current.Request.ApplicationPath;
+            string physicalPath = HttpContext.Current.Request.MapPath(appPath);
+
+            string savePath = physicalPath + "uploads/images/";
+
+            // Get the name of the file to upload.
+            string fileName = file.FileName;
+
+
+            string extension = System.IO.Path.GetExtension(file.FileName);
+
+            if (extension != ".jpg" && extension != ".png")
+            {
+
+              //  UploadStatusLabel.Text = extension + "Must be image.";
+                return;
+            }
+
+            // Create the path and file name to check for duplicates.
+            string pathToCheck = savePath + fileName;
+
+            // Create a temporary file name to use for checking duplicates.
+            string tempfileName = "";
+
+            // Check to see if a file already exists with the
+            // same name as the file to upload.        
+            if (System.IO.File.Exists(pathToCheck))
+            {
+                int counter = 2;
+                while (System.IO.File.Exists(pathToCheck))
+                {
+                    // if a file with this name already exists,
+                    // prefix the filename with a number.
+                    tempfileName = counter.ToString() + fileName;
+                    pathToCheck = savePath + tempfileName;
+                    counter++;
+                }
+
+                fileName = tempfileName;
+
+                // Notify the user that the file name was changed.
+              //  UploadStatusLabel.Text = "A file with the same name already exists." +
+               //     "<br />Your file was saved as " + fileName;
+            }
+            else
+            {
+                // Notify the user that the file was saved successfully.
+              //  UploadStatusLabel.Text = "Your file was uploaded successfully.";
+            }
+
+            // Append the name of the file to upload to the path.
+            savePath += fileName;
+
+            // Call the SaveAs method to save the uploaded
+            // file to the specified directory.
+            FileUpload1.SaveAs(savePath);
+
         }
     }
 }

@@ -7,38 +7,35 @@ namespace MacedonianRedCrossYouth
 {
     public class User
     {
-        int user_id {set; get;}
-        string username {set; get; }
-        string password { set; get; }
-        string first_name { set; get; }
-        string last_name { set; get; }
-        string email { set; get; }
-        string phone { set; get; }
-        int organization_id { set; get; }
-        int role_id { set; get; }
+        public int user_id {set; get;}
+        public String username {set; get; }
+        public String password { set; get; }
+        public String first_name { set; get; }
+        public String last_name { set; get; }
+        public Boolean gender {set; get; }
+        public DateTime birth_date {set; get; }
+        public DateTime join_date {set; get;}
+        public String image_path {set; get; }
+        public String address {set; get; }
+        public String phone { set; get; }
+        public String email { set; get; }
+        public Boolean is_active {set; get; }
+        public Boolean is_member {set; get; }
+        public int occupation_id {set; get; }
+        public String location {set; get; }
+        public int nationality_id {set; get; }
+        public int faculty_id { set; get; }
+        public int organization_id { set; get; }
+        public string organization_name { set; get; }
 
-        public User(int user_id, string username, string passwrod, string first_name, string last_name, string email,
-            string phone, int organization_id, int role_id)
-        {
-            this.user_id = user_id;
-            this.username = username;
-            this.password = password;
-            this.first_name = first_name;
-            this.last_name = last_name;
-            this.email = email;
-            this.phone = phone;
-            this.organization_id = organization_id;
-            this.role_id = role_id;
-        }
+        public User()
+        {}
 
         public string getFullName()
         {
             return this.first_name + " " + this.last_name;
         }
 
-        public int getUserID()
-        {
-            return this.user_id;
-        }
+
     }
 }

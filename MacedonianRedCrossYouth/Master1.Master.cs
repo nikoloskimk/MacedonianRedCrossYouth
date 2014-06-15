@@ -22,10 +22,13 @@ namespace CrvenKrst
                     liVolonteri.Attributes.Add("class", "active");
                     break;
                 case "/Default.aspx":
-                    liKalendar.Attributes.Add("class", "active");
+                    liAktivnosti.Attributes.Add("class", "active");
+                    break;
+                case "/Korisnik.aspx":
+                    liKorisnik.Attributes.Add("class", "active");
                     break;
                 default:
-                    liKalendar.Attributes.Add("class", "active");
+                    liAktivnosti.Attributes.Add("class", "active");
                     break;
             }
 

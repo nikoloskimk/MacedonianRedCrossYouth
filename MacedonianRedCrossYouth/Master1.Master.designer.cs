@@ -13,13 +13,13 @@ namespace CrvenKrst {
     public partial class Master1 {
         
         /// <summary>
-        /// liKalendar control.
+        /// liAktivnosti control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liKalendar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liAktivnosti;
         
         /// <summary>
         /// liVolonteri control.
@@ -29,6 +29,15 @@ namespace CrvenKrst {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liVolonteri;
+        
+        /// <summary>
+        /// liKorisnik control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liKorisnik;
         
         /// <summary>
         /// lblUser control.

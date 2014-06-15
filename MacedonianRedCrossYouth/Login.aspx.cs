@@ -22,7 +22,7 @@ namespace MacedonianRedCrossYouth
             User u = DatabaseManagement.authenticateUser(tbUsername.Text, tbPassword.Text);
             if (u != null)
             {
-                Session["user_id"] = u.getUserID();
+                Session["user_id"] = u.user_id;
                 Session["full_name"] = u.getFullName();
                 Response.Redirect("Default.aspx");
 
@@ -31,6 +31,11 @@ namespace MacedonianRedCrossYouth
             {
                 lblError.Text = "Неуспешна најава. Обидете се повторно.";
             }
+        }
+
+        protected void LoginView1_ViewChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

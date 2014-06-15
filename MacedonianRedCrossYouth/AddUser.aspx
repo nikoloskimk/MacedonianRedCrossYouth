@@ -1,25 +1,39 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master1.Master" AutoEventWireup="true" CodeBehind="AddUser.aspx.cs" Inherits="MacedonianRedCrossYouth.AddUser" %>
+
+<%@ Register assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" namespace="System.Web.UI.DataVisualization.Charting" tagprefix="asp" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentplaceHolder1" runat="server">
+    <style>
+        tr.highlight td {
+            padding-bottom: 10px;
+        }
+    </style>
     <form id="form1" runat="server">
-        <table style="width: auto; margin: auto;">
+        <div id="form" style="float:left;">
+        <table style="margin: auto;">
             <tr>
-                <td colspan="2" style="background-color: #bcbcbc">Лични податоци</td>
+                <td colspan="2" style="background-color: #bcbcbc; text-align: center;">Лични податоци
+                </td>
+            </tr>
+            <tr class="highlight">
+                <td></td>
             </tr>
             <tr>
                 <td style="width: 185px">Име:</td>
-                <td>Презиме:</td>
+                <td class="auto-style1">Презиме:
+                </td>
             </tr>
             <tr>
                 <td style="width: 185px">
                     <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
                 </td>
-                <td>
+                <td class="auto-style1">
                     <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td style="height: 20px; width: 185px">Пол:</td>
-                <td style="height: 20px">Датум на раѓање</td>
+                <td class="auto-style2">Датум на раѓање</td>
             </tr>
             <tr>
                 <td style="width: 185px">
@@ -28,116 +42,153 @@
                         <asp:ListItem Value="2">Женски</asp:ListItem>
                     </asp:DropDownList>
                 </td>
-                <td>
+                <td class="auto-style1">
                     <asp:TextBox ID="tbDatumRaganje" runat="server"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td style="width: 185px">Националност:</td>
-                <td>Занимање:</td>
+                <td class="auto-style1">Занимање:</td>
             </tr>
             <tr>
                 <td style="width: 185px">
-                    <asp:DropDownList ID="DropDownList2" runat="server">
-                        <asp:ListItem>македонец</asp:ListItem>
-                        <asp:ListItem>влав</asp:ListItem>
-                        <asp:ListItem>албанец</asp:ListItem>
-                        <asp:ListItem>србин</asp:ListItem>
-                        <asp:ListItem>бошњак</asp:ListItem>
-                        <asp:ListItem>останато</asp:ListItem>
+                    <asp:DropDownList ID="ddNationalities" runat="server">
                     </asp:DropDownList>
                 </td>
-                <td>
+                <td class="auto-style1">
                     <asp:DropDownList ID="ddZanimanje" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddZanimanje_SelectedIndexChanged">
                         <asp:ListItem></asp:ListItem>
                         <asp:ListItem>вработен</asp:ListItem>
                         <asp:ListItem>студент</asp:ListItem>
                     </asp:DropDownList>
-&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:DropDownList ID="ddFakulteti" runat="server" Visible="False">
                     </asp:DropDownList>
                 </td>
             </tr>
             <tr>
                 <td style="width: 185px">Датум на пристап:</td>
-                <td>&nbsp;</td>
+                <td class="auto-style1">&nbsp;</td>
             </tr>
             <tr>
                 <td style="width: 185px">
                     <asp:TextBox ID="tbDatumPristap" runat="server"></asp:TextBox>
                 </td>
-                <td>Организација:</td>
+                <td class="auto-style1">Организација:</td>
             </tr>
             <tr>
                 <td style="width: 185px">
                     <asp:CheckBox ID="Aktiven" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" Text="Активен" TextAlign="Left" />
                 </td>
-                <td>
+                <td class="auto-style1">
                     <asp:DropDownList ID="ddOrganizations" runat="server">
                     </asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddOrganizations" Display="None" ErrorMessage="Мора да изберете организација" InitialValue="0" Enabled="False" ></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
-                <td colspan="2" style="background-color: #bcbcbc; height: 20px;">Контакт</td>
+                <td colspan="2">Прикачи фотографија (180px X 240px):</td>
             </tr>
             <tr>
+                <td colspan="2">
+                    <asp:FileUpload ID="FileUpload1" runat="server" AllowMultiple="True" />
+                </td>
+            </tr>
+            <tr class="highlight">
+                <td></td>
+            </tr>
+
+            <tr>
+                <td colspan="2" style="background-color: #bcbcbc; height: 20px; text-align: center;">Контакт</td>
+            </tr>
+            <tr class="highlight">
+                <td></td>
+            </tr>
+
+            <tr>
                 <td style="width: 185px">Адреса:</td>
-                <td>Град:</td>
+                <td class="auto-style1">Град:</td>
             </tr>
             <tr>
                 <td style="width: 185px">
                     <asp:TextBox ID="TextBox5" runat="server" Width="156px"></asp:TextBox>
                 </td>
-                <td>
+                <td class="auto-style1">
                     <asp:TextBox ID="Grad" runat="server" Width="156px"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="Grad" ErrorMessage="RequiredFieldValidator"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
                 <td style="width: 185px">Мобилен телефон:</td>
-                <td>Е-пошта:</td>
+                <td class="auto-style1">Е-пошта:</td>
             </tr>
             <tr>
                 <td style="width: 185px">
                     <asp:TextBox ID="TextBox9" runat="server" Width="156px"></asp:TextBox>
                 </td>
-                <td>
+                <td class="auto-style1">
                     <asp:TextBox ID="TextBox11" runat="server" Width="156px"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
-                <td colspan="2" style="height: 20px; background-color: #bcbcbc;">Членство</td>
+            <tr class="highlight">
+                <td></td>
             </tr>
+
+            <tr>
+                <td colspan="2" style="height: 20px; background-color: #bcbcbc; text-align:center;">Членство</td>
+            </tr>
+            <tr class="highlight">
+                <td></td>
+            </tr>
+
             <tr>
                 <td style="height: 25px; width: 185px">
-                    <asp:CheckBox ID="Clen" runat="server"  Text="Е член" />
+                    <asp:CheckBox ID="Clen" runat="server" Text="Е член" />
                 </td>
-                <td style="height: 25px">Зачленет од:&nbsp; <br />
+                <td class="auto-style3">Зачленет од:&nbsp;
+                    <br />
                     <asp:TextBox ID="TextBox12" runat="server" Width="154px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
                     <br />
-                     <asp:Button ID="Button1" runat="server" Text="Додади корисник" />
+                    <asp:Button ID="Button1" runat="server" Text="Додади корисник" OnClick="Button1_Click" />
+
+                    <br />
+                    <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
 
                 </td>
             </tr>
         </table>
-
+        </div>
     </form>
 
-        <!-- load datepicker -->
+    <!-- load datepicker -->
     <style>
         select {
             color: black;
+        }
+
+        .auto-style1 {
+            width: 400px;
+        }
+
+        .auto-style2 {
+            height: 20px;
+            width: 400px;
+        }
+
+        .auto-style3 {
+            height: 25px;
+            width: 400px;
         }
     </style>
     <script type="text/javascript">
         $(function () {
             $("#ContentplaceHolder1_tbDatumRaganje").datepicker({
                 changeMonth: true,
-                changeYear: true
+                changeYear: true,
+                dateFormat: 'dd.mm.yy'
             });
 
             $("#ContentplaceHolder1_tbDatumPristap").datepicker({
