@@ -25,10 +25,10 @@
             </tr>
             <tr>
                 <td style="width: 185px">
-                    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="tbFirstName" runat="server"></asp:TextBox>
                 </td>
                 <td class="auto-style1">
-                    <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="tbLastName" runat="server"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -37,7 +37,7 @@
             </tr>
             <tr>
                 <td style="width: 185px">
-                    <asp:DropDownList ID="DropDownList1" runat="server">
+                    <asp:DropDownList ID="ddlGender" runat="server">
                         <asp:ListItem Value="1">Машки</asp:ListItem>
                         <asp:ListItem Value="2">Женски</asp:ListItem>
                     </asp:DropDownList>
@@ -111,10 +111,10 @@
             </tr>
             <tr>
                 <td style="width: 185px">
-                    <asp:TextBox ID="TextBox5" runat="server" Width="156px"></asp:TextBox>
+                    <asp:TextBox ID="tbAddress" runat="server" Width="156px"></asp:TextBox>
                 </td>
                 <td class="auto-style1">
-                    <asp:TextBox ID="Grad" runat="server" Width="156px"></asp:TextBox>
+                    <asp:TextBox ID="tbCity" runat="server" Width="156px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -123,10 +123,10 @@
             </tr>
             <tr>
                 <td style="width: 185px">
-                    <asp:TextBox ID="TextBox9" runat="server" Width="156px"></asp:TextBox>
+                    <asp:TextBox ID="tbPhone" runat="server" Width="156px"></asp:TextBox>
                 </td>
                 <td class="auto-style1">
-                    <asp:TextBox ID="TextBox11" runat="server" Width="156px"></asp:TextBox>
+                    <asp:TextBox ID="tbEmail" runat="server" Width="156px"></asp:TextBox>
                 </td>
             </tr>
             <tr class="highlight">
@@ -146,7 +146,7 @@
                 </td>
                 <td class="auto-style3">Зачленет од:&nbsp;
                     <br />
-                    <asp:TextBox ID="TextBox12" runat="server" Width="154px"></asp:TextBox>
+                    <asp:TextBox ID="tbMemberSince" runat="server" Width="154px"></asp:TextBox>
                 </td>
             </tr>
             <tr>

@@ -73,6 +73,7 @@
                 <tr>
                     <td>
                     <asp:Button ID="btnLogin" runat="server" OnClick="btnNajaviSe_Click" Text="Најави се" Width="160" />
+                        </td>
                 </tr>
                 <tr>
                     <td></td>

@@ -210,5 +210,51 @@ namespace MacedonianRedCrossYouth
             }
             return false;
         }
+
+        public static Boolean InsertUser(int user_id, string username, string password, string first_name, string last_name, Boolean gender, DateTime birth_date, DateTime join_date, string image_path, string address, string phone, string email, Boolean is_active, Boolean is_member, int occupation_id, string location, int nationality_id, int faculty_id, int organization_id)
+        {
+            SqlConnection konekcija = getConnection();
+            string sqlString = "INSERT INTO Users (user_id, username, password, first_name, last_name, gender, birth_date, join_date," +
+                " image_path, address, phone, email, is_active, is_member, occupation_id, location, nationality_id, faculty_id, organization_id)" +
+                "VALUES (@user_id, @username, @password, @first_name, @last_name, @gender, @birth_date, @join_date, @image_path, @address," +
+                " @phone, @email, @is_active, @is_member, @occupation_id, @location, @nationality_id, @faculty_id, @organization_id)";
+ 
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            komanda.Parameters.AddWithValue("@user_id", user_id);
+            komanda.Parameters.AddWithValue("@username", username);
+            komanda.Parameters.AddWithValue("@password", password);
+            komanda.Parameters.AddWithValue("@first_name", first_name);
+            komanda.Parameters.AddWithValue("@last_name", last_name);
+            komanda.Parameters.AddWithValue("@gender", gender);
+            komanda.Parameters.AddWithValue("@birth_date", birth_date);
+            komanda.Parameters.AddWithValue("@join_date", join_date);
+            komanda.Parameters.AddWithValue("@image_path", image_path);
+            komanda.Parameters.AddWithValue("@address", address);
+            komanda.Parameters.AddWithValue("@phone", phone);
+            komanda.Parameters.AddWithValue("@email", email);
+            komanda.Parameters.AddWithValue("@is_active", is_active);
+            komanda.Parameters.AddWithValue("@is_member", is_member);
+            komanda.Parameters.AddWithValue("@occupation_id", occupation_id);
+            komanda.Parameters.AddWithValue("@location", location);
+            komanda.Parameters.AddWithValue("@nationality_id", nationality_id);
+            komanda.Parameters.AddWithValue("@faculty_id", faculty_id);
+            komanda.Parameters.AddWithValue("@organization_id", organization_id);
+            try
+            {
+                konekcija.Open();
+                int count = komanda.ExecuteNonQuery();
+                return count == 1;
+            }
+            catch (Exception err)
+            {
+
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+            return false;
+        }
+
     }
 }

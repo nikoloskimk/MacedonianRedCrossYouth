@@ -69,6 +69,36 @@ namespace MacedonianRedCrossYouth
                 SaveFile(FileUpload1.PostedFile);
             */
             UploadFile(sender, e);
+            Random r = new Random(); // so random dodavam brojcinja na novi korisnici, mozda na pocetoko ke ima poklopuvanja ama toa ke ga sredemo
+            int user_id = r.Next();
+            string username = "User" + r;
+            string password = "user";
+            Boolean gender;
+            if(ddlGender.SelectedItem.Value.Equals(1)){
+                gender = true;
+            }
+            else{
+                gender = false;
+            }
+            DateTime birth_date = Convert.ToDateTime(tbDatumRaganje.Text);
+            DateTime join_date = Convert.ToDateTime(tbDatumPristap.Text);
+            string image_path = Convert.ToString(FileUpload1.PostedFile.FileName); // zimam pateka na slikata i stavam gu u baza http://stackoverflow.com/questions/1130560/get-full-path-of-a-file-with-fileupload-control
+            int zanimanje = 0;
+            if(ddZanimanje.SelectedIndex!=-1){
+                zanimanje = ddZanimanje.SelectedIndex;
+            }
+            int nationality_id = Convert.ToInt32(ddNationalities.SelectedItem.Value);
+            int faculty_id = 0;
+            if(ddFakulteti.SelectedIndex!=-1){
+                faculty_id = Convert.ToInt32(ddFakulteti.SelectedItem.Value);
+            }
+            int organization_id = 0;
+            if(ddOrganizations.SelectedIndex!= -1){
+                organization_id = Convert.ToInt32(ddOrganizations.SelectedItem.Value);
+            }
+            //proveri ga dodavanjeto !!!!!!!
+            DatabaseManagement.InsertUser(user_id, username, password, tbFirstName.Text, tbLastName.Text, gender, birth_date, join_date,
+                image_path, tbAddress.Text, tbPhone.Text, tbEmail.Text, Aktiven.Checked , Clen.Checked, zanimanje, tbCity.Text, nationality_id, faculty_id, organization_id);
         }
 
         protected void UploadFile(Object s, EventArgs e)
