@@ -34,7 +34,14 @@ namespace MacedonianRedCrossYouth
                     ListItem l = new ListItem(o.getName(), o.getNationalityID().ToString());
                     ddNationalities.Items.Add(l);
                 }
+                List<Faculty> faculties = DatabaseManagement.getFaculties();
+                ddFakulteti.Items.Add(new ListItem("", "0"));
 
+                foreach (Faculty f in faculties)
+                {
+                    ListItem l = new ListItem(f.getFacultyName(), f.getFacultyId().ToString());
+                    ddFakulteti.Items.Add(l);
+                }
             }
         }
 
@@ -62,19 +69,13 @@ namespace MacedonianRedCrossYouth
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Validate("g");
-            /*
-            if (FileUpload1.HasFile)
-                // Call a helper method routine to save the file.
-                SaveFile(FileUpload1.PostedFile);
-            */
-            UploadFile(sender, e);
+           
             Random r = new Random(); // so random dodavam brojcinja na novi korisnici, mozda na pocetoko ke ima poklopuvanja ama toa ke ga sredemo
             int user_id = r.Next();
-            string username = "User" + r.ToString();
-            string password = "user";
+            string username = tbUsername.Text;
+            string password = tbPassword.Text;
             Boolean gender;
-            if(ddlGender.SelectedItem.Value.Equals(1)){
+            if(ddlGender.SelectedIndex == 0){
                 gender = true;
             }
             else{
@@ -98,8 +99,17 @@ namespace MacedonianRedCrossYouth
             }
             //proveri ga dodavanjeto !!!!!!!
             DatabaseManagement.InsertUser(user_id, username, password, tbFirstName.Text, tbLastName.Text, gender, birth_date, join_date,
-                image_path, tbAddress.Text, tbPhone.Text, tbEmail.Text, Aktiven.Checked , Clen.Checked, zanimanje, tbCity.Text, nationality_id, faculty_id, organization_id);
+               image_path ,tbAddress.Text, tbPhone.Text, tbEmail.Text, Aktiven.Checked , Clen.Checked, zanimanje, tbCity.Text, nationality_id, faculty_id, organization_id);
+            Validate("g");
+            /*
+            if (FileUpload1.HasFile)
+                // Call a helper method routine to save the file.
+                SaveFile(FileUpload1.PostedFile);
+            */
+            UploadFile(sender, e);
         }
+
+        string image_path = "";
 
         protected void UploadFile(Object s, EventArgs e)
         {
@@ -229,7 +239,7 @@ namespace MacedonianRedCrossYouth
             // Call the SaveAs method to save the uploaded
             // file to the specified directory.
             FileUpload1.SaveAs(savePath);
-
+            image_path = savePath;
         }
     }
 }

@@ -18,6 +18,18 @@
             <tr class="highlight">
                 <td></td>
             </tr>
+             <tr>
+                <td style="width: 185px">Username:</td>
+                <td class="auto-style1">Password:</td>
+            </tr>
+            <tr>
+                <td style="width: 185px">
+                    <asp:TextBox ID="tbUsername" runat="server"></asp:TextBox>
+                </td>
+                <td class="auto-style1">
+                    <asp:TextBox ID="tbPassword" runat="server"></asp:TextBox>
+                </td>
+            </tr>
             <tr>
                 <td style="width: 185px">Име:</td>
                 <td class="auto-style1">Презиме:
@@ -60,15 +72,17 @@
                         <asp:ListItem></asp:ListItem>
                         <asp:ListItem>вработен</asp:ListItem>
                         <asp:ListItem>студент</asp:ListItem>
+                        <asp:ListItem>ученик</asp:ListItem>
                     </asp:DropDownList>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:DropDownList ID="ddFakulteti" runat="server" Visible="False">
-                    </asp:DropDownList>
-                </td>
+                    </td>
             </tr>
             <tr>
                 <td style="width: 185px">Датум на пристап:</td>
-                <td class="auto-style1">&nbsp;</td>
+                <td class="auto-style1">
+                    <asp:DropDownList ID="ddFakulteti" runat="server" Visible="False" Height="16px" Width="399px">
+                    </asp:DropDownList>
+                </td>
             </tr>
             <tr>
                 <td style="width: 185px">

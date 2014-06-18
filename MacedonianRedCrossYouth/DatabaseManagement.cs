@@ -77,6 +77,36 @@ namespace MacedonianRedCrossYouth
             return nationalities;
         }
 
+        public static List<Faculty> getFaculties()
+        {
+            List<Faculty> faculties = new List<Faculty>();
+            SqlConnection konekcija = getConnection();
+            string sqlString = "SELECT * FROM Faculties";
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            try
+            {
+                konekcija.Open();
+                SqlDataReader citac = komanda.ExecuteReader();
+                while (citac.Read())
+                {
+
+                    Faculty f = new Faculty(int.Parse(citac[0].ToString()), citac[1].ToString());
+                    faculties.Add(f);
+
+                }
+            }
+            catch (Exception err)
+            {
+
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+
+            return faculties;
+        }
+
         public static User authenticateUser(string username, string password)
         {
             SqlConnection konekcija = getConnection();
@@ -239,10 +269,18 @@ namespace MacedonianRedCrossYouth
             komanda.Parameters.AddWithValue("@nationality_id", nationality_id);
             komanda.Parameters.AddWithValue("@faculty_id", faculty_id);
             komanda.Parameters.AddWithValue("@organization_id", organization_id);
+            string sqlString2 = "INSERT INTO URO (user_id, role_id, organization_id, start_date)" +
+                "VALUES (@user_id, @role_id, @organization_id, @start_date)";
+            SqlCommand komanda2 = new SqlCommand(sqlString2, konekcija);
+            komanda2.Parameters.AddWithValue("@user_id", user_id);
+            komanda2.Parameters.AddWithValue("@role_id", 9);
+            komanda2.Parameters.AddWithValue("@organization_id", organization_id);
+            komanda2.Parameters.AddWithValue("@start_date", join_date);
             try
             {
                 konekcija.Open();
                 int count = komanda.ExecuteNonQuery();
+                count = komanda2.ExecuteNonQuery();
                 return count == 1;
             }
             catch (Exception err)
@@ -256,6 +294,6 @@ namespace MacedonianRedCrossYouth
             return false;
         }
 
-
+        
     }
 }

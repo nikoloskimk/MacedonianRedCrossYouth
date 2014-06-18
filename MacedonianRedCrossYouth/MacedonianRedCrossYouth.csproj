@@ -151,6 +151,7 @@
     <Compile Include="Dokumenti.aspx.designer.cs">
       <DependentUpon>Dokumenti.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Faculty.cs" />
     <Compile Include="Korisnik.aspx.cs">
       <DependentUpon>Korisnik.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
