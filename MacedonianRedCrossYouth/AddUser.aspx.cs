@@ -71,7 +71,7 @@ namespace MacedonianRedCrossYouth
             UploadFile(sender, e);
             Random r = new Random(); // so random dodavam brojcinja na novi korisnici, mozda na pocetoko ke ima poklopuvanja ama toa ke ga sredemo
             int user_id = r.Next();
-            string username = "User" + r;
+            string username = "User" + r.ToString();
             string password = "user";
             Boolean gender;
             if(ddlGender.SelectedItem.Value.Equals(1)){

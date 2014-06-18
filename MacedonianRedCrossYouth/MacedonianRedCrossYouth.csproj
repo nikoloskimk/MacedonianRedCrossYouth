@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddUser.aspx" />
+    <Content Include="Clenovi.aspx" />
     <Content Include="Content\css\bootstrap-theme.css" />
     <Content Include="Content\css\bootstrap-theme.min.css" />
     <Content Include="Content\css\bootstrap.css" />
@@ -80,8 +81,22 @@
     <Content Include="Content\css\images\ui-icons_ffd27a_256x240.png" />
     <Content Include="Content\css\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\css\jquery-ui-1.10.4.css" />
+    <Content Include="Content\image\1403061992_editor_floopy-dish_save_.png" />
+    <Content Include="Content\image\1403062265_editor_pencil_pen_edit_write_.png" />
+    <Content Include="Content\image\1403062268_circle_close_delete.png" />
+    <Content Include="Content\image\1403062270_circle_add_plus.png" />
+    <Content Include="Content\image\1403062273_common_email_envelope_mail_.png" />
+    <Content Include="Content\image\1403062275_device_iPhone_smart-phone_vertical_.png" />
+    <Content Include="Content\image\1403062276_editor_trash_delete_recycle_bin_.png" />
+    <Content Include="Content\image\1403062278_editor_trash_delete_recycle_bin.png" />
+    <Content Include="Content\image\1403062284_common_calendar_month_.png" />
+    <Content Include="Content\image\1403062286_map_location_pin_map-marker_.png" />
+    <Content Include="Content\image\1403062689_check.png" />
+    <Content Include="Content\image\1403062727_circle_info_more-information_detail.png" />
     <Content Include="Content\image\logo-navbar1.png" />
+    <Content Include="Content\image\Picture8.png" />
     <Content Include="Default.aspx" />
+    <Content Include="Dokumenti.aspx" />
     <Content Include="Korisnik.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
@@ -103,6 +118,7 @@
     <Content Include="Scripts\jquery-ui-1.10.4.js" />
     <Content Include="Scripts\jquery.tabs.js" />
     <Content Include="Volonteri.aspx" />
+    <Content Include="VolonterskiMenadzment.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +129,13 @@
     <Compile Include="AddUser.aspx.designer.cs">
       <DependentUpon>AddUser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Clenovi.aspx.cs">
+      <DependentUpon>Clenovi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clenovi.aspx.designer.cs">
+      <DependentUpon>Clenovi.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseManagement.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -120,6 +143,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dokumenti.aspx.cs">
+      <DependentUpon>Dokumenti.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dokumenti.aspx.designer.cs">
+      <DependentUpon>Dokumenti.aspx</DependentUpon>
     </Compile>
     <Compile Include="Korisnik.aspx.cs">
       <DependentUpon>Korisnik.aspx</DependentUpon>
@@ -159,6 +189,13 @@
     </Compile>
     <Compile Include="Volonteri.aspx.designer.cs">
       <DependentUpon>Volonteri.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VolonterskiMenadzment.aspx.cs">
+      <DependentUpon>VolonterskiMenadzment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VolonterskiMenadzment.aspx.designer.cs">
+      <DependentUpon>VolonterskiMenadzment.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

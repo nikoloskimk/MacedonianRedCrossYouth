@@ -27,6 +27,12 @@ namespace CrvenKrst
                 case "/Korisnik.aspx":
                     liKorisnik.Attributes.Add("class", "active");
                     break;
+                case "/Clenovi.aspx":
+                    liClenovi.Attributes.Add("class", "active");
+                    break;
+                case "/Dokumenti.aspx":
+                    liDokumenti.Attributes.Add("class", "active");
+                    break;
                 default:
                     liAktivnosti.Attributes.Add("class", "active");
                     break;

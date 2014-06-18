@@ -9,7 +9,7 @@
         }
     </style>
     <form id="form1" runat="server">
-        <div id="form" style="float:left;">
+        <div style="width: 650px; margin: auto;">
         <table style="margin: auto;">
             <tr>
                 <td colspan="2" style="background-color: #bcbcbc; text-align: center;">Лични податоци
@@ -91,7 +91,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <asp:FileUpload ID="FileUpload1" runat="server" AllowMultiple="True" />
+                    <asp:FileUpload ID="FileUpload1" runat="server" />
                 </td>
             </tr>
             <tr class="highlight">
