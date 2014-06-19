@@ -126,6 +126,7 @@ namespace MacedonianRedCrossYouth
                     u.user_id = int.Parse(citac["user_id"].ToString());
                     u.first_name = citac["first_name"].ToString();
                     u.last_name = citac["last_name"].ToString();
+                    u.organization_id = int.Parse(citac["organization_id"].ToString());
 
                     return u;
                 }

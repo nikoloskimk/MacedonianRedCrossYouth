@@ -140,11 +140,11 @@
                     <asp:TextBox ID="tbPhone" runat="server" Width="156px"></asp:TextBox>
                 </td>
                 <td class="auto-style1">
-                    <asp:TextBox ID="tbEmail" runat="server" Width="156px"></asp:TextBox>
+                    <asp:TextBox ID="tbEmail" runat="server" Width="156px" TextMode="Email"></asp:TextBox>
                 </td>
             </tr>
             <tr class="highlight">
-                <td></td>
+                <td>&nbsp;</td>
             </tr>
 
             <tr>
@@ -156,11 +156,11 @@
 
             <tr>
                 <td style="height: 25px; width: 185px">
-                    <asp:CheckBox ID="Clen" runat="server" Text="Е член" />
+                    <asp:CheckBox ID="Clen" runat="server" Text="Е член" AutoPostBack="True" OnCheckedChanged="Clen_CheckedChanged" />
                 </td>
                 <td class="auto-style3">Зачленет од:&nbsp;
                     <br />
-                    <asp:TextBox ID="tbMemberSince" runat="server" Width="154px"></asp:TextBox>
+                    <asp:TextBox ID="tbMemberSince" runat="server" Width="154px" Enabled="False"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -207,8 +207,10 @@
 
             $("#ContentplaceHolder1_tbDatumPristap").datepicker({
                 changeMonth: true,
-                changeYear: true
+                changeYear: true,
+                dateFormat: 'dd.mm.yy'
             });
+            $('#tbPhone').mask('(999)/999-999');
         });
     </script>
 </asp:Content>

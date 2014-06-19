@@ -24,6 +24,7 @@ namespace MacedonianRedCrossYouth
             {
                 Session["user_id"] = u.user_id;
                 Session["full_name"] = u.getFullName();
+                Session["organization_id"] = u.getOrganizationId();
                 Response.Redirect("Default.aspx");
 
             }

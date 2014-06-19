@@ -18,13 +18,18 @@ namespace MacedonianRedCrossYouth
             {
                 //organizations
                 List<Organization> organizations = DatabaseManagement.getOrganizations();
-                ddOrganizations.Items.Add(new ListItem("", "0"));
+                
 
                 foreach(Organization o in organizations) {
                     ListItem l = new ListItem(o.getName(), o.getOrganizationID().ToString());
                     ddOrganizations.Items.Add(l);
                 }
-
+                if (Session["organization_id"] != null)
+                {
+                    string organization_id = Session["organization_id"].ToString();
+                    ddOrganizations.Items.FindByValue(organization_id).Selected = true;
+                }
+                    
                 //nationalities
                 List<Nationality> nationalities = DatabaseManagement.getNationalities();
                 ddNationalities.Items.Add(new ListItem("", "0"));
@@ -240,6 +245,18 @@ namespace MacedonianRedCrossYouth
             // file to the specified directory.
             FileUpload1.SaveAs(savePath);
             image_path = savePath;
+        }
+
+        protected void Clen_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Clen.Checked)
+            {
+                tbMemberSince.Enabled = true;
+            }
+            else
+            {
+                tbMemberSince.Enabled = false;
+            }
         }
     }
 }
