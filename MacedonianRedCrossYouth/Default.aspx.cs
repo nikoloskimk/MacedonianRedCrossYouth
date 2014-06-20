@@ -26,5 +26,10 @@ namespace MacedonianRedCrossYouth
         {
 
         }
+
+        protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("AddActivity.aspx");
+        }
     }
 }

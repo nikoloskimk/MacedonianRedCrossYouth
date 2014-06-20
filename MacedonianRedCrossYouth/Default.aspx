@@ -12,6 +12,6 @@
 
             </asp:View>
         </asp:MultiView>
-        <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+                    <asp:ImageButton ID="ImageButton1" runat="server" Height="32px" ImageUrl="~/Content/image/1403062270_circle_add_plus.png"  Width="32px" OnClick="ImageButton1_Click" />
     </form>
 </asp:Content>
