@@ -16,10 +16,21 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td>
+                            <asp:TextBox ID="tbFromDate" runat="server" TextMode="Date"></asp:TextBox>
+                        </td>
+                        <td>
+                            <asp:TextBox ID="tbToDate" runat="server" TextMode="Date"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <asp:GridView ID="gvActivnosti" runat="server" AutoGenerateColumns="False">
+                            </asp:GridView>
+                        </td>
                     </tr>
                 </table>
+                <asp:Label ID="lblError" runat="server" Text="Label"></asp:Label>
                 <br />
                 Администратор
                 <asp:Button ID="Button2" runat="server" Text="Button" />
