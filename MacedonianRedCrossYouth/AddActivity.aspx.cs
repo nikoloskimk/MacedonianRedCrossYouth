@@ -13,13 +13,7 @@ namespace MacedonianRedCrossYouth
         {
             if (!IsPostBack)
             {
-                List<ActivityType> activity_types = DatabaseManagement.getActivityTypes();
-
-                foreach (ActivityType at in activity_types)
-                {
-                    ListItem l = new ListItem(at.getActivityTypeName(), at.getActivityTypeID().ToString());
-                    ddActivityTypes.Items.Add(l);
-                }
+                
 
                 if (Session["user_id"] != null)
                 {
@@ -40,6 +34,18 @@ namespace MacedonianRedCrossYouth
 
         protected void btnAddActivity_Click(object sender, EventArgs e)
         {
+            AddActivityInDatabase();
+            Response.Redirect("Default.aspx");
+        }
+
+        protected void btnAddAnotherActivity_Click(object sender, EventArgs e)
+        {
+            AddActivityInDatabase();
+            Response.Redirect("AddActivity.aspx");
+        }
+
+        public void AddActivityInDatabase()
+        {
             Random r = new Random();
             int activity_id = r.Next();
             string title = tbTitile.Text;
@@ -49,10 +55,13 @@ namespace MacedonianRedCrossYouth
             string summary = " ";
             int costs = int.Parse(tbCosts.Text.ToString());
             string place = tbPlace.Text;
-            int organization_id = int.Parse(ddOrganizations.SelectedItem.Value.ToString());
+            int organization_id = 1;
+            if (Session["user_id"] != null)
+                organization_id = int.Parse(ddOrganizations.SelectedItem.Value.ToString());
             int activity_type_id = int.Parse(ddActivityTypes.SelectedItem.Value.ToString());
             DatabaseManagement.InsertActivity(activity_id, title, start_time, end_time, description, costs, summary,
                 place, organization_id, activity_type_id);
         }
+        
     }
 }

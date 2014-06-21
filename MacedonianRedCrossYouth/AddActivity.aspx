@@ -15,7 +15,7 @@
         <div style="width: 650px; margin: auto;">
         <table id="tabela" style="margin: auto;">
             <tr>
-                <td colspan="2" style="background-color: #bcbcbc; text-align: center;">Лични податоци
+                <td colspan="2" style="background-color: #bcbcbc; text-align: center;">Нова активности
                 </td>
             </tr>
             <tr class="highlight">
@@ -26,6 +26,7 @@
                     <asp:CompareValidator ID="cv" runat="server" ControlToCompare="tbStartTime" ControlToValidate="tbEndTime" Display="None" ErrorMessage="Времето на завршување на активноста мора да е поголемо од времето за почеток!" Operator="GreaterThan" SetFocusOnError="True"></asp:CompareValidator>
                     <asp:RequiredFieldValidator ID="des" runat="server" ControlToValidate="tbDescription" Display="None" ErrorMessage="Внесете опис за активноста!" SetFocusOnError="True"></asp:RequiredFieldValidator>
                     <asp:RequiredFieldValidator ID="c" runat="server" ControlToValidate="tbCosts" Display="None" ErrorMessage="Внесете трошоци!" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                    <asp:RangeValidator ID="rv" runat="server" ControlToValidate="tbCosts" Display="None" ErrorMessage="Трошоците мора да бидат поголеми или еднакви на 0!" MinimumValue="0" SetFocusOnError="True" Type="Integer" MaximumValue="1000000"></asp:RangeValidator>
                     <asp:RequiredFieldValidator ID="p" runat="server" ControlToValidate="tbPlace" Display="None" ErrorMessage="Внесете место на одржување на активноста" SetFocusOnError="True"></asp:RequiredFieldValidator>
                 </td>
             </tr>
@@ -108,6 +109,8 @@
             <tr>
                 <td colspan="2">
                     <asp:Button ID="btnAddActivity" runat="server" Text="Додади активност" OnClick="btnAddActivity_Click" />
+
+                    <asp:Button ID="btnAddAnotherActivity" runat="server" Text="Додади уште активности" OnClick="btnAddAnotherActivity_Click" />
 
                     <br />
                     <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />

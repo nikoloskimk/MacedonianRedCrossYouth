@@ -4,6 +4,23 @@
     <form id="form1" runat="server">
         <asp:MultiView ID="MultiView1" runat="server">
             <asp:View ID="View1" runat="server">
+                <table style="width: 100%">
+                    <tr>
+                        <td style="height: 22px">
+                            <asp:DropDownList ID="ddOrganizations" runat="server">
+                            </asp:DropDownList>
+                        </td>
+                        <td style="height: 22px">
+                            <asp:DropDownList ID="ddActivityTypes" runat="server">
+                            </asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+                <br />
                 Администратор
                 <asp:Button ID="Button2" runat="server" Text="Button" />
             </asp:View>
