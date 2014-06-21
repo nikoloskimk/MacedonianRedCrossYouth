@@ -22,22 +22,22 @@ namespace MacedonianRedCrossYouth {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// tbUsername control.
+        /// rfVFirstName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbUsername;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfVFirstName;
         
         /// <summary>
-        /// tbPassword control.
+        /// rfVLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPassword;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfVLastName;
         
         /// <summary>
         /// tbFirstName control.
@@ -58,6 +58,15 @@ namespace MacedonianRedCrossYouth {
         protected global::System.Web.UI.WebControls.TextBox tbLastName;
         
         /// <summary>
+        /// rfVGender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfVGender;
+        
+        /// <summary>
         /// ddlGender control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace MacedonianRedCrossYouth {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlGender;
+        
+        /// <summary>
+        /// ddNationalities control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddNationalities;
         
         /// <summary>
         /// tbDatumRaganje control.
@@ -76,13 +94,22 @@ namespace MacedonianRedCrossYouth {
         protected global::System.Web.UI.WebControls.TextBox tbDatumRaganje;
         
         /// <summary>
-        /// ddNationalities control.
+        /// tbDatumPristap control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddNationalities;
+        protected global::System.Web.UI.WebControls.TextBox tbDatumPristap;
+        
+        /// <summary>
+        /// lblFakultet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFakultet;
         
         /// <summary>
         /// ddZanimanje control.
@@ -103,24 +130,6 @@ namespace MacedonianRedCrossYouth {
         protected global::System.Web.UI.WebControls.DropDownList ddFakulteti;
         
         /// <summary>
-        /// tbDatumPristap control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbDatumPristap;
-        
-        /// <summary>
-        /// Aktiven control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox Aktiven;
-        
-        /// <summary>
         /// ddOrganizations control.
         /// </summary>
         /// <remarks>
@@ -130,13 +139,13 @@ namespace MacedonianRedCrossYouth {
         protected global::System.Web.UI.WebControls.DropDownList ddOrganizations;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// Aktiven control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.CheckBox Aktiven;
         
         /// <summary>
         /// FileUpload1 control.
@@ -182,6 +191,24 @@ namespace MacedonianRedCrossYouth {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbEmail;
+        
+        /// <summary>
+        /// tbUsername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbUsername;
+        
+        /// <summary>
+        /// tbPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbPassword;
         
         /// <summary>
         /// Clen control.

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MacedonianRedCrossYouth;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -43,12 +44,21 @@ namespace CrvenKrst
 
             if (Session["user_id"] != null)
             {
-                lblUser.Text = (string) Session["full_name"];
+                lblUser.Text = Session["full_name"].ToString();
+                int user_id = int.Parse(Session["user_id"].ToString());
+                //display menu items
+                if (!DatabaseManagement.canViewMenuItems(user_id))
+                {
+                    liVolonteri.Visible = false;
+                    liClenovi.Visible = false;
+                    liVolonterskiMenadzmenti.Visible = false;
+                }
             }
             else
             {
             }
 
         }
+
     }
 }

@@ -172,7 +172,7 @@ namespace MacedonianRedCrossYouth
         public static User authenticateUser(string username, string password)
         {
             SqlConnection konekcija = getConnection();
-            string sqlString = "SELECT * FROM Users WHERE username=@username AND password=@password";
+            string sqlString = "SELECT * FROM Users WHERE username=@username AND password=@password AND is_active = 1";
             SqlCommand komanda = new SqlCommand(sqlString, konekcija);
             komanda.Parameters.AddWithValue("@username", username);
             komanda.Parameters.AddWithValue("@password", password);
@@ -324,7 +324,7 @@ namespace MacedonianRedCrossYouth
                 " @phone, @email, @is_active, @is_member, @member_since, @occupation_id, @location, @nationality_id, @faculty_id, @organization_id)";
 
             }
-             
+
             SqlCommand komanda = new SqlCommand(sqlString, konekcija);
 
             if (is_member == true)
@@ -350,7 +350,7 @@ namespace MacedonianRedCrossYouth
             komanda.Parameters.AddWithValue("@nationality_id", nationality_id);
             komanda.Parameters.AddWithValue("@faculty_id", faculty_id);
             komanda.Parameters.AddWithValue("@organization_id", organization_id);
-            
+
             /*
             string sqlString2 = "INSERT INTO URO (user_id, role_id, organization_id, start_date)" +
                 "VALUES (@user_id, @role_id, @organization_id, @start_date)";
@@ -364,7 +364,7 @@ namespace MacedonianRedCrossYouth
             {
                 konekcija.Open();
                 int count = komanda.ExecuteNonQuery();
-             //   count = komanda2.ExecuteNonQuery();
+                //   count = komanda2.ExecuteNonQuery();
                 return count == 1;
             }
             catch (Exception err)
@@ -378,7 +378,7 @@ namespace MacedonianRedCrossYouth
             return false;
         }
 
-        public static Boolean InsertActivity( string title, DateTime start_time, DateTime end_time, string act_description, int costs, string summary, string place, int organization_id, int activity_type_id)
+        public static Boolean InsertActivity(string title, DateTime start_time, DateTime end_time, string act_description, int costs, string summary, string place, int organization_id, int activity_type_id)
         {
             SqlConnection konekcija = getConnection();
             string sqlString = "INSERT INTO Activities (title, start_time, end_time, activity_description, summary, costs, place," +
@@ -492,6 +492,103 @@ namespace MacedonianRedCrossYouth
             }
 
             return organizations;
+        }
+
+        public static Boolean canViewMenuItems(int user_id)
+        {
+            SqlConnection konekcija = getConnection();
+            string sqlString = "SELECT COUNT(*) as numRoles FROM URO WHERE role_id != 9 AND user_id=@user_id";
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            komanda.Parameters.AddWithValue("@user_id", user_id);
+
+            try
+            {
+                konekcija.Open();
+                SqlDataReader citac = komanda.ExecuteReader();
+                if (citac.Read())
+                {
+                    int numRoles = int.Parse(citac["numRoles"].ToString());
+                    return numRoles > 0;
+                }
+                else
+                    return false;
+            }
+            catch (Exception err)
+            {
+
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+            return false;
+        }
+
+        public static Boolean canAddVolonteri(int user_id)
+        {
+            SqlConnection konekcija = getConnection();
+            string sqlString = "SELECT COUNT(*) as numRoles FROM URO WHERE (role_id = 5 OR role_id = 6) AND user_id=@user_id";
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            komanda.Parameters.AddWithValue("@user_id", user_id);
+
+            try
+            {
+                konekcija.Open();
+                SqlDataReader citac = komanda.ExecuteReader();
+                if (citac.Read())
+                {
+                    int numRoles = int.Parse(citac["numRoles"].ToString());
+                    return numRoles > 0;
+                }
+                else
+                    return false;
+            }
+            catch (Exception err)
+            {
+
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+            return false;
+        }
+
+        public static DataSet getActivities(int organization_id, int activity_type_id, DateTime from_date, DateTime to_date)
+        {
+            string sqlString = "";
+            SqlConnection konekcija = getConnection();
+            if (activity_type_id == 0)
+            {
+                sqlString = "SELECT * FROM Activities WHERE organization_id=@organization_id and @from_date<star_date and @to_date>end_date";
+            }
+            else
+            {
+                sqlString = "SELECT * FROM Activities WHERE organization_id=@organization_id and activity_type_id=@activity_type_id and @from_date<star_date and @to_date>end_date";
+            }
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            komanda.Parameters.AddWithValue("@organization_id", organization_id);
+            komanda.Parameters.AddWithValue("@activity_type_id", activity_type_id);
+            komanda.Parameters.AddWithValue("@from_date", from_date);
+            komanda.Parameters.AddWithValue("@to_date", to_date);
+            SqlDataAdapter adapter = new SqlDataAdapter(komanda);
+            DataSet ds = new DataSet();
+
+            try
+            {
+                konekcija.Open();
+                adapter.Fill(ds, "Activities");
+                return ds;
+            }
+            catch (Exception err)
+            {
+
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+            return ds;
         }
     }
 }

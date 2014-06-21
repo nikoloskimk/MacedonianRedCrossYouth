@@ -18,12 +18,10 @@
 
         body {
             background-color: #fcfcfc;
-
         }
 
         #footer {
             border-top-color: #c7c7c7;
-            
             border-left: 1px solid #929292;
             border-right: 1px solid #929292;
             min-height: 10px;
@@ -32,7 +30,6 @@
             margin: auto;
             width: 1000px;
             color: #343233;
-
         }
     </style>
 </head>
@@ -57,7 +54,7 @@
             <ul class="nav navbar-nav navbar-right" style="padding-right: 30px;">
                 <li id="liKorisnik" runat="server" style="border-right-color: red;">
                     <a href="Korisnik.aspx" id="Korisnik">
-                    <asp:Label ID="lblUser" runat="server" Text=""></asp:Label></a>
+                        <asp:Label ID="lblUser" runat="server" Text=""></asp:Label></a>
                 </li>
                 <p class="navbar-text" style="color: red; height: 10px;">|</p>
                 <li><a href="Logout.aspx" id="btnLogout">Одјави се</a></li>

@@ -13,6 +13,11 @@ namespace MacedonianRedCrossYouth
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["user_id"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+
             if (!IsPostBack)
             {
                 if (Request.QueryString["succ"] != null && Request.QueryString["succ"] != "")
@@ -27,6 +32,10 @@ namespace MacedonianRedCrossYouth
                     lblMessage.Visible = true;
                 }
                 IspolniVolonteri();
+
+                int user_id = int.Parse(Session["user_id"].ToString());
+                if(!DatabaseManagement.canAddVolonteri(user_id))
+                    btnAddVolonter.Visible = false;
             }
             else
             {
@@ -42,14 +51,14 @@ namespace MacedonianRedCrossYouth
             ViewState["volonteri"] = ds;
         }
 
-        protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
-        {
-            Response.Redirect("AddUser.aspx");
-        }
-
         protected void gvVolonteri_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
             lblMessage.Visible = true;
+        }
+
+        protected void btnAddVolonter_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("AddUser.aspx");
         }
     }
 }

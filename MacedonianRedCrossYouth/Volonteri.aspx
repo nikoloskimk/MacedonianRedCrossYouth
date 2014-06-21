@@ -2,8 +2,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentplaceHolder1" runat="server">
     <form runat="server">
-        <div style="margin-top: 10px; margin-right: 20px;">
-            <asp:ImageButton ID="ImageButton1" runat="server" AlternateText="Додади волонтер" Height="32px" ImageUrl="~/Content/image/1403062270_circle_add_plus.png" OnClick="ImageButton1_Click" Width="32px" ImageAlign="Right" ToolTip="Додади волонтер" />
+        <div style="margin-top: 10px; margin-right: 20px; float: right;">
+            <div style="float: left;">
+                <asp:ImageButton ID="btnAddVolonter" runat="server" AlternateText="Додади волонтер" Height="32px" ImageUrl="~/Content/image/1403062270_circle_add_plus.png" OnClick="btnAddVolonter_Click" Width="32px" ToolTip="Додади волонтер"></asp:ImageButton>
+            </div>
+            <div id="divAdd" style="height: 32px; float: left; padding-top: 7px; padding-left: 5px;">
+                <asp:Label Text="Додади волонтер" runat="server"></asp:Label>
+            </div>
         </div>
         <div id="controlMessage" style="padding: 10px;">
             <asp:Label ID="lblMessage" runat="server" Visible="False" ForeColor="Green"></asp:Label>
@@ -15,7 +20,7 @@
                 <asp:BoundField DataField="organization_name" HeaderText="Организација" SortExpression="organization_name" />
                 <asp:CheckBoxField DataField="is_member" HeaderText="Член" />
                 <asp:CheckBoxField DataField="is_active" HeaderText="Активен" />
-                <asp:CommandField HeaderText="Избери" ShowSelectButton="True" />
+                <asp:CommandField HeaderText="Информации" ShowSelectButton="True" SelectText="Прикажи детали" />
             </Columns>
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
@@ -28,6 +33,10 @@
             <SortedDescendingHeaderStyle BackColor="#7E0000" />
         </asp:GridView>
     </form>
-
+    <script type="text/javascript">
+        $("#divAdd").click(function (d) {
+            window.location = "AddUser.aspx";
+        });
+    </script>
 </asp:Content>
 

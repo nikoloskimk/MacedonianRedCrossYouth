@@ -16,6 +16,15 @@ namespace MacedonianRedCrossYouth
         {
             if (!IsPostBack)
             {
+                if (Session["user_id"] == null)
+                {
+                    Response.Redirect("Login.aspx");
+                }
+                int user_id = int.Parse(Session["user_id"].ToString());
+                if (!DatabaseManagement.canAddVolonteri(user_id))
+                    Response.Redirect("Restricted.aspx");
+
+                tbDatumPristap.Text = DateTime.Now.ToLocalTime().ToString("yyyy-MM-dd");
                 //organizations
                 List<Organization> organizations = DatabaseManagement.getOrganizations();
                 
@@ -65,10 +74,12 @@ namespace MacedonianRedCrossYouth
             if (ddZanimanje.SelectedIndex == 2)
             {
                 ddFakulteti.Visible = true;
+                lblFakultet.Visible = true;
             }
             else
             {
                 ddFakulteti.Visible = false;
+                lblFakultet.Visible = false;
             }
         }
 
