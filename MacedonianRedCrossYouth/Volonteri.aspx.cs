@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,19 +10,46 @@ namespace MacedonianRedCrossYouth
 {
     public partial class Volonteri : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                if (Request.QueryString["succ"] != null && Request.QueryString["succ"] != "")
+                {
+                    int c = int.Parse(Request.QueryString["succ"]);
+                    switch (c)
+                    {
+                        case 1:
+                            lblMessage.Text = "Успешно додаден корисник.";
+                            break;
+                    }
+                    lblMessage.Visible = true;
+                }
+                IspolniVolonteri();
+            }
+            else
+            {
+                lblMessage.Visible = false;
+            }
         }
 
-        protected void addUser_Click(object sender, EventArgs e)
+        public void IspolniVolonteri()
         {
-            Response.Redirect("AddUser.aspx");
+            DataSet ds = DatabaseManagement.getVolonteri();
+            gvVolonteri.DataSource = ds;
+            gvVolonteri.DataBind();
+            ViewState["volonteri"] = ds;
         }
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("AddUser.aspx");
+        }
+
+        protected void gvVolonteri_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            lblMessage.Visible = true;
         }
     }
 }

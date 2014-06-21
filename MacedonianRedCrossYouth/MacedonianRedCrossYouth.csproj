@@ -147,7 +147,6 @@
       <DependentUpon>Clenovi.aspx</DependentUpon>
     </Compile>
     <Compile Include="DatabaseManagement.cs" />
-    <Compile Include="Date.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

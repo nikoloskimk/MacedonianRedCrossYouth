@@ -16,8 +16,23 @@ namespace MacedonianRedCrossYouth
         {
             if (!IsPostBack)
             {
+                if (Request.QueryString["succ"] != null && Request.QueryString["succ"] != "")
+                {
+                    int c = int.Parse(Request.QueryString["succ"]);
+                    switch (c)
+                    {
+                        case 1:
+                            lblMessage.Text = "Успешно додаден корисник.";
+                            break;
+                    }
+                    lblMessage.Visible = true;
+                }
                 IspolniVolonteri();
                 IspolniClenovi();
+            }
+            else
+            {
+                lblMessage.Visible = false;
             }
         }
 

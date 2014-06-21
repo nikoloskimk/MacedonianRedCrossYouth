@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master1.Master" AutoEventWireup="true" CodeBehind="VolonterskiMenadzment.aspx.cs" Inherits="MacedonianRedCrossYouth.VolonterskiMenadzment" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentplaceHolder1" runat="server">
-    <div style="width: 800px; margin:auto;">
+    <div style="width: 800px; margin: auto;">
         <form runat="server">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" id="myTab">
@@ -13,8 +13,11 @@
 
             <div class="tab-content">
                 <div class="tab-pane active" id="volonteri">
-                    <div style="margin-top:10px; margin-right: 20px;">
-                    <asp:ImageButton ID="ImageButton1" runat="server" AlternateText="Додади волонтер" Height="32px" ImageUrl="~/Content/image/1403062270_circle_add_plus.png" OnClick="ImageButton1_Click" Width="32px" ImageAlign="Right" ToolTip="Додади волонтер" />
+                    <div style="margin-top: 10px; margin-right: 20px;">
+                        <asp:ImageButton ID="ImageButton1" runat="server" AlternateText="Додади волонтер" Height="32px" ImageUrl="~/Content/image/1403062270_circle_add_plus.png" OnClick="ImageButton1_Click" Width="32px" ImageAlign="Right" ToolTip="Додади волонтер" />
+                    </div>
+                    <div id="controlMessage" style="padding:10px;">
+                        <asp:Label ID="lblMessage" runat="server" Visible="False" ForeColor="Green"></asp:Label>
                     </div>
                     <asp:GridView ID="gvVolonteri" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnSelectedIndexChanging="gvVolonteri_SelectedIndexChanging">
                         <Columns>
@@ -39,11 +42,15 @@
                     <asp:Label ID="Label1" runat="server" Text="Лабела" Visible="False"></asp:Label>
                 </div>
                 <div class="tab-pane" id="clenovi">
-                    <asp:GridView ID="gvClenovi" runat="server"></asp:GridView>
+                    <asp:GridView ID="gvClenovi" runat="server">
+                        <Columns>
+                            <asp:CommandField HeaderText="Членарина" SelectText="Прегледај членарина" ShowSelectButton="True" />
+                        </Columns>
+                    </asp:GridView>
                 </div>
                 <div class="tab-pane" id="formi">Формите паат активности да ги занимават членовите и волонтерите.</div>
             </div>
-            
+
             <script>
                 $(function () {
                     $('#myTab a:first').tab('show')

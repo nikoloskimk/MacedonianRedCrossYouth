@@ -72,8 +72,10 @@ namespace MacedonianRedCrossYouth
             }
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void btnAddUser_Click(object sender, EventArgs e)
         {
+            Validate();
+
             string username = tbUsername.Text;
             string password = tbPassword.Text;
             Boolean gender;
@@ -101,16 +103,23 @@ namespace MacedonianRedCrossYouth
             }
 
             DateTime member_since = new DateTime();
-
             if (Clen.Checked)
             {
                 member_since = Convert.ToDateTime(tbMemberSince.Text);
             }
 
             //proveri ga dodavanjeto !!!!!!!
-            DatabaseManagement.InsertUser(username, password, tbFirstName.Text, tbLastName.Text, gender, birth_date, join_date,
+            Boolean isAdded = DatabaseManagement.InsertUser(username, password, tbFirstName.Text, tbLastName.Text, gender, birth_date, join_date,
                image_path, tbAddress.Text, tbPhone.Text, tbEmail.Text, Aktiven.Checked, Clen.Checked, member_since, zanimanje, tbCity.Text, nationality_id, faculty_id, organization_id);
-            Validate("g");
+
+            if (isAdded)
+            {
+                Response.Redirect("VolonterskiMenadzment.aspx?succ=1");
+            }
+            else
+            {
+                lblError.Visible = true;
+            }
             /*
             if (FileUpload1.HasFile)
                 // Call a helper method routine to save the file.

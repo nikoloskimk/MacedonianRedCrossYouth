@@ -369,7 +369,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
-
+                return false;
             }
             finally
             {
@@ -378,15 +378,14 @@ namespace MacedonianRedCrossYouth
             return false;
         }
 
-        public static Boolean InsertActivity(int activity_id, string title, DateTime start_time, DateTime end_time, string act_description, int costs, string summary, string place, int organization_id, int activity_type_id)
+        public static Boolean InsertActivity( string title, DateTime start_time, DateTime end_time, string act_description, int costs, string summary, string place, int organization_id, int activity_type_id)
         {
             SqlConnection konekcija = getConnection();
-            string sqlString = "INSERT INTO Activities (activity_id, title, start_time, end_time, activity_description, summary, costs, place," +
-                " organization_id, acitvity_type_id)" +
-                " VALUES (@activity_id, @title, @start_time, @end_time, @activity_description, @summary, @costs, @place, @organization_id, @activity_type_id)";
+            string sqlString = "INSERT INTO Activities (title, start_time, end_time, activity_description, summary, costs, place," +
+                " organization_id, activity_type_id)" +
+                " VALUES (@title, @start_time, @end_time, @activity_description, @summary, @costs, @place, @organization_id, @activity_type_id)";
 
             SqlCommand komanda = new SqlCommand(sqlString, konekcija);
-            komanda.Parameters.AddWithValue("@activity_id", activity_id);
             komanda.Parameters.AddWithValue("@title", title);
             komanda.Parameters.AddWithValue("@start_time", start_time);
             komanda.Parameters.AddWithValue("@end_time", end_time);
@@ -479,10 +478,8 @@ namespace MacedonianRedCrossYouth
                 SqlDataReader citac = komanda.ExecuteReader();
                 while (citac.Read())
                 {
-
                     Organization o = new Organization(int.Parse(citac[0].ToString()), citac[1].ToString());
                     organizations.Add(o);
-
                 }
             }
             catch (Exception err)
