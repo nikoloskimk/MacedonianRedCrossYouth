@@ -16,48 +16,35 @@ namespace MacedonianRedCrossYouth
         {
             if (!IsPostBack)
             {
-                IspolniMaster();
+                IspolniVolonteri();
+                IspolniClenovi();
             }
         }
 
-        public void IspolniMaster()
+        public void IspolniVolonteri()
         {
-            SqlConnection konekcija = new SqlConnection();
-            konekcija.ConnectionString = ConfigurationManager.ConnectionStrings["mojaKonekcija"].ConnectionString;
-            string sqlString = "SELECT u.first_name, u.last_name FROM Users u";
-            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
-            SqlDataAdapter adapter = new SqlDataAdapter(komanda);
-            DataSet ds = new DataSet();
-            try
-            {
-                konekcija.Open();
-                adapter.Fill(ds, "Users");
-                gvVolonteri.DataSource = ds;
-                gvVolonteri.DataBind();
-                ViewState["dataset"] = ds;
-                /*SqlDataReader citac = komanda.ExecuteReader();
-                while (citac.Read())
-                {
-
-                    Organization o = new Organization(int.Parse(citac[0].ToString()), citac[1].ToString());
-                    organizations.Add(o);
-
-                }
-                 */
-            }
-            catch (Exception err)
-            {
-
-            }
-            finally
-            {
-                konekcija.Close();
-            }
-
+            DataSet ds = DatabaseManagement.getVolonteri();
+            gvVolonteri.DataSource = ds;
+            gvVolonteri.DataBind();
+            ViewState["volonteri"] = ds;
         }
+
+        public void IspolniClenovi()
+        {
+            DataSet ds = DatabaseManagement.getClenovi();
+            gvClenovi.DataSource = ds;
+            gvClenovi.DataBind();
+            ViewState["clenovi"] = ds;
+        }
+
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("AddUser.aspx");
+        }
+
+        protected void gvVolonteri_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            Label1.Visible = true;  
         }
     }
 }

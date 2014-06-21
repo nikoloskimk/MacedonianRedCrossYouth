@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -93,12 +94,12 @@ namespace MacedonianRedCrossYouth
 
                     Organization o = new Organization(int.Parse(citac[0].ToString()), citac[1].ToString());
                     organizations.Add(o);
-                    
+
                 }
             }
             catch (Exception err)
             {
-                
+
             }
             finally
             {
@@ -205,7 +206,8 @@ namespace MacedonianRedCrossYouth
             return null;
         }
 
-        public static User getUserByID(int id) {
+        public static User getUserByID(int id)
+        {
             SqlConnection konekcija = getConnection();
             string sqlString = "SELECT u.*, o.organization_name FROM Users u, Organizations o WHERE u.user_id=@user_id AND u.organization_id=o.organization_id";
             SqlCommand komanda = new SqlCommand(sqlString, konekcija);
@@ -303,16 +305,33 @@ namespace MacedonianRedCrossYouth
             return false;
         }
 
-        public static Boolean InsertUser(int user_id, string username, string password, string first_name, string last_name, Boolean gender, DateTime birth_date, DateTime join_date, string image_path, string address, string phone, string email, Boolean is_active, Boolean is_member, int occupation_id, string location, int nationality_id, int faculty_id, int organization_id)
+        public static Boolean InsertUser(string username, string password, string first_name, string last_name, Boolean gender, DateTime birth_date, DateTime join_date, string image_path, string address, string phone, string email, Boolean is_active, Boolean is_member, DateTime member_since, int occupation_id, string location, int nationality_id, int faculty_id, int organization_id)
         {
             SqlConnection konekcija = getConnection();
-            string sqlString = "INSERT INTO Users (user_id, username, password, first_name, last_name, gender, birth_date, join_date," +
+            string sqlString = "";
+            if (is_member == false)
+            {
+                sqlString = "INSERT INTO Users (username, password, first_name, last_name, gender, birth_date, join_date," +
                 " image_path, address, phone, email, is_active, is_member, occupation_id, location, nationality_id, faculty_id, organization_id)" +
-                "VALUES (@user_id, @username, @password, @first_name, @last_name, @gender, @birth_date, @join_date, @image_path, @address," +
+                "VALUES (@username, @password, @first_name, @last_name, @gender, @birth_date, @join_date, @image_path, @address," +
                 " @phone, @email, @is_active, @is_member, @occupation_id, @location, @nationality_id, @faculty_id, @organization_id)";
- 
+            }
+            else
+            {
+                sqlString = "INSERT INTO Users (username, password, first_name, last_name, gender, birth_date, join_date," +
+                " image_path, address, phone, email, is_active, is_member, member_since, occupation_id, location, nationality_id, faculty_id, organization_id)" +
+                "VALUES (@username, @password, @first_name, @last_name, @gender, @birth_date, @join_date, @image_path, @address," +
+                " @phone, @email, @is_active, @is_member, @member_since, @occupation_id, @location, @nationality_id, @faculty_id, @organization_id)";
+
+            }
+             
             SqlCommand komanda = new SqlCommand(sqlString, konekcija);
-            komanda.Parameters.AddWithValue("@user_id", user_id);
+
+            if (is_member == true)
+            {
+                komanda.Parameters.AddWithValue("@member_since", member_since);
+            }
+
             komanda.Parameters.AddWithValue("@username", username);
             komanda.Parameters.AddWithValue("@password", password);
             komanda.Parameters.AddWithValue("@first_name", first_name);
@@ -331,6 +350,8 @@ namespace MacedonianRedCrossYouth
             komanda.Parameters.AddWithValue("@nationality_id", nationality_id);
             komanda.Parameters.AddWithValue("@faculty_id", faculty_id);
             komanda.Parameters.AddWithValue("@organization_id", organization_id);
+            
+            /*
             string sqlString2 = "INSERT INTO URO (user_id, role_id, organization_id, start_date)" +
                 "VALUES (@user_id, @role_id, @organization_id, @start_date)";
             SqlCommand komanda2 = new SqlCommand(sqlString2, konekcija);
@@ -338,11 +359,12 @@ namespace MacedonianRedCrossYouth
             komanda2.Parameters.AddWithValue("@role_id", 9);
             komanda2.Parameters.AddWithValue("@organization_id", organization_id);
             komanda2.Parameters.AddWithValue("@start_date", join_date);
+            */
             try
             {
                 konekcija.Open();
                 int count = komanda.ExecuteNonQuery();
-                count = komanda2.ExecuteNonQuery();
+             //   count = komanda2.ExecuteNonQuery();
                 return count == 1;
             }
             catch (Exception err)
@@ -374,7 +396,7 @@ namespace MacedonianRedCrossYouth
             komanda.Parameters.AddWithValue("@place", place);
             komanda.Parameters.AddWithValue("@organization_id", organization_id);
             komanda.Parameters.AddWithValue("@activity_type_id", activity_type_id);
-           
+
             try
             {
                 konekcija.Open();
@@ -392,6 +414,7 @@ namespace MacedonianRedCrossYouth
             return false;
         }
 
+<<<<<<< HEAD
         public static List<Organization> getChildOrganizations(int organization_id)
         {
             List<Organization> organizations = new List<Organization>();
@@ -410,6 +433,21 @@ namespace MacedonianRedCrossYouth
                     organizations.Add(o);
 
                 }
+=======
+        public static DataSet getVolonteri()
+        {
+            SqlConnection konekcija = getConnection();
+            string sqlString = "SELECT u.first_name, u.last_name, o.organization_name, u.is_member, u.is_active FROM Users u, Organizations o WHERE u.organization_id = o.organization_id";
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+
+            SqlDataAdapter adapter = new SqlDataAdapter(komanda);
+            DataSet ds = new DataSet();
+
+            try
+            {
+                konekcija.Open();
+                adapter.Fill(ds, "Users");
+                return ds;
             }
             catch (Exception err)
             {
@@ -419,8 +457,39 @@ namespace MacedonianRedCrossYouth
             {
                 konekcija.Close();
             }
+            return ds;
+        }
+
+        public static DataSet getClenovi()
+        {
+            SqlConnection konekcija = getConnection();
+            string sqlString = "SELECT u.user_id, u.first_name, u.last_name, o.organization_name FROM Users u, Organizations o WHERE u.organization_id = o.organization_id AND u.is_member = 1";
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+
+            SqlDataAdapter adapter = new SqlDataAdapter(komanda);
+            DataSet ds = new DataSet();
+
+            try
+            {
+                konekcija.Open();
+                adapter.Fill(ds, "Users");
+                return ds;
+>>>>>>> origin/master
+            }
+            catch (Exception err)
+            {
+
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+<<<<<<< HEAD
 
             return organizations;
+=======
+            return ds;
+>>>>>>> origin/master
         }
     }
 }

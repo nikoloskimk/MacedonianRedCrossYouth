@@ -74,9 +74,6 @@ namespace MacedonianRedCrossYouth
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-           
-            Random r = new Random(); // so random dodavam brojcinja na novi korisnici, mozda na pocetoko ke ima poklopuvanja ama toa ke ga sredemo
-            int user_id = r.Next();
             string username = tbUsername.Text;
             string password = tbPassword.Text;
             Boolean gender;
@@ -102,9 +99,17 @@ namespace MacedonianRedCrossYouth
             if(ddOrganizations.SelectedIndex!= -1){
                 organization_id = Convert.ToInt32(ddOrganizations.SelectedItem.Value);
             }
+
+            DateTime member_since = new DateTime();
+
+            if (Clen.Checked)
+            {
+                member_since = Convert.ToDateTime(tbMemberSince.Text);
+            }
+
             //proveri ga dodavanjeto !!!!!!!
-            DatabaseManagement.InsertUser(user_id, username, password, tbFirstName.Text, tbLastName.Text, gender, birth_date, join_date,
-               image_path ,tbAddress.Text, tbPhone.Text, tbEmail.Text, Aktiven.Checked , Clen.Checked, zanimanje, tbCity.Text, nationality_id, faculty_id, organization_id);
+            DatabaseManagement.InsertUser(username, password, tbFirstName.Text, tbLastName.Text, gender, birth_date, join_date,
+               image_path, tbAddress.Text, tbPhone.Text, tbEmail.Text, Aktiven.Checked, Clen.Checked, member_since, zanimanje, tbCity.Text, nationality_id, faculty_id, organization_id);
             Validate("g");
             /*
             if (FileUpload1.HasFile)
