@@ -647,5 +647,121 @@ namespace MacedonianRedCrossYouth
             }
             return 0;
         }
+
+        public static List<User> getUsersByOrganization(int organization_id)
+        {
+            List<User> users = new List<User>();
+            SqlConnection konekcija = getConnection();
+            string sqlString = "SELECT * FROM Users WHERE organization_id=@organization_id and is_active=1";
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            komanda.Parameters.AddWithValue("@organization_id", organization_id);
+            try
+            {
+                konekcija.Open();
+                SqlDataReader citac = komanda.ExecuteReader();
+                while (citac.Read())
+                {
+                    User u = new User();
+                    u.user_id = int.Parse(citac["user_id"].ToString());
+                    u.first_name = citac["first_name"].ToString();
+                    u.last_name = citac["last_name"].ToString();
+                    u.organization_id = int.Parse(citac["organization_id"].ToString());
+                    users.Add(u);
+                }
+            }
+            catch (Exception err)
+            {
+
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+
+            return users;
+        }
+
+        public static DataSet getUsersOnActivity(int activity_id)
+        {
+            SqlConnection konekcija = getConnection();
+            string sqlString = "SELECT u.user_id, u.first_name, u.last_name, ua.hours_spent FROM UserActivities ua, Users u WHERE u.user_id = ua.user_id and ua.activity_id=@activity_id";
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            komanda.Parameters.AddWithValue("@activity_id", activity_id);
+            SqlDataAdapter adapter = new SqlDataAdapter(komanda);
+            DataSet ds = new DataSet();
+
+            try
+            {
+                konekcija.Open();
+                adapter.Fill(ds, "UsersActivity");
+                return ds;
+            }
+            catch (Exception err)
+            {
+
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+            return ds;
+        }
+
+        public static int getActivityUsersCount(int activity_id)
+        {
+            SqlConnection konekcija = getConnection();
+            string sqlString = "SELECT COUNT(*) as Broj FROM UserActivities WHERE activity_id=@activity_id GROUP BY activity_id";
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            komanda.Parameters.AddWithValue("@activity_id", activity_id);
+
+            try
+            {
+                konekcija.Open();
+                SqlDataReader citac = komanda.ExecuteReader();
+                if (citac.Read())
+                {
+                    int count = int.Parse(citac["Broj"].ToString());
+                    return count;
+                }
+                else
+                    return 0;
+            }
+            catch (Exception err)
+            {
+
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+            return 0;
+        }
+
+        public static Boolean InsertUsersOnActivity(int user_id, int activity_id, float hours_spent)
+        {
+            SqlConnection konekcija = getConnection();
+            string sqlString = "INSERT INTO UserActivities (user_id, activity_id, hours_spent)" +
+                " VALUES (@user_id, @activity_id, @hours_spent)";
+
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            komanda.Parameters.AddWithValue("@user_id", user_id);
+            komanda.Parameters.AddWithValue("@activity_id", activity_id);
+            komanda.Parameters.AddWithValue("@hours_spent", hours_spent);
+            try
+            {
+                konekcija.Open();
+                int count = komanda.ExecuteNonQuery();
+                return count == 1;
+            }
+            catch (Exception err)
+            {
+
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+            return false;
+        }
     }
 }

@@ -94,6 +94,24 @@ namespace MacedonianRedCrossYouth {
         protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
+        /// pnlDetalis control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlDetalis;
+        
+        /// <summary>
+        /// tbDetalis control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbDetalis;
+        
+        /// <summary>
         /// Button2 control.
         /// </summary>
         /// <remarks>
@@ -121,12 +139,12 @@ namespace MacedonianRedCrossYouth {
         protected global::System.Web.UI.WebControls.ImageButton btnAdd;
         
         /// <summary>
-        /// btnRefresh control.
+        /// btnEdit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnRefresh;
+        protected global::System.Web.UI.WebControls.ImageButton btnEdit;
     }
 }

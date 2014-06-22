@@ -7,30 +7,33 @@
                 <table style="width: 100%">
                     <tr>
                         <td style="height: 22px">
-                            <asp:DropDownList ID="ddOrganizations" runat="server">
+                            <asp:DropDownList ID="ddOrganizations" runat="server" AutoPostBack="True">
                             </asp:DropDownList>
                         </td>
                         <td style="height: 22px">
-                            <asp:DropDownList ID="ddActivityTypes" runat="server">
+                            <asp:DropDownList ID="ddActivityTypes" runat="server" AutoPostBack="True">
                             </asp:DropDownList>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <asp:TextBox ID="tbFromDate" runat="server" TextMode="Date"></asp:TextBox>
+                            <asp:TextBox ID="tbFromDate" runat="server" TextMode="Date" AutoPostBack="True"></asp:TextBox>
                         </td>
                         <td>
-                            <asp:TextBox ID="tbToDate" runat="server" TextMode="Date"></asp:TextBox>
+                            <asp:TextBox ID="tbToDate" runat="server" TextMode="Date" AutoPostBack="True"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <asp:GridView ID="gvActivnosti" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" OnSelectedIndexChanged="gvActivnosti_SelectedIndexChanged">
+                            <asp:GridView ID="gvActivnosti" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" OnSelectedIndexChanged="gvActivnosti_SelectedIndexChanged" DataKeyNames="activity_id">
                                 <AlternatingRowStyle BackColor="White" />
                                 <Columns>
                                     <asp:BoundField DataField="title" HeaderText="Наслов на активност" />
                                     <asp:BoundField DataField="start_time" HeaderText="Време на започнување" />
                                     <asp:BoundField DataField="end_time" HeaderText="Време на завршување" />
+                                    <asp:CommandField HeaderText="Детали" SelectImageUrl="~/Content/image/details.png" SelectText="Детали" ShowSelectButton="True">
+                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:CommandField>
                                 </Columns>
                                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
                                 <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
@@ -46,6 +49,9 @@
                     </tr>
                 </table>
                 <asp:Label ID="lblError" runat="server" Text="Label"></asp:Label>
+                <asp:Panel ID="pnlDetalis" runat="server" Visible="False">
+                    <asp:TextBox ID="tbDetalis" runat="server" ReadOnly="True" TextMode="MultiLine"></asp:TextBox>
+                </asp:Panel>
                 <br />
                 Администратор
                 <asp:Button ID="Button2" runat="server" Text="Button" />
@@ -55,7 +61,7 @@
 
             </asp:View>
         </asp:MultiView>
-                    <asp:ImageButton ID="btnAdd" runat="server" Height="27px" ImageUrl="~/Content/image/add.png"  Width="27px" OnClick="ImageButton1_Click" ImageAlign="Middle" />
-                    <asp:ImageButton ID="btnRefresh" runat="server" Height="32px" ImageUrl="~/Content/image/refresh.png"  Width="32px" OnClick="btnRefresh_Click" ImageAlign="Middle" />
+                    <asp:ImageButton ID="btnAdd" runat="server" Height="24px" ImageUrl="~/Content/image/add.png"  Width="24px" OnClick="ImageButton1_Click" ImageAlign="Middle" />
+                    <asp:ImageButton ID="btnEdit" runat="server" Height="24px" ImageUrl="~/Content/image/edit.png"  Width="24px" OnClick="btnRefresh_Click" ImageAlign="Middle" />
     </form>
 </asp:Content>
