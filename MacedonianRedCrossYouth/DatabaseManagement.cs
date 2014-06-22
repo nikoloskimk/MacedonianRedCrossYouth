@@ -34,7 +34,7 @@ namespace MacedonianRedCrossYouth
         {
             List<Organization> organizations = new List<Organization>();
             SqlConnection konekcija = getConnection();
-            string sqlString = "SELECT o.* FROM Organizations o, URO uro WHERE uro.user_id=@user_id and o.organization_id=uro.organization_id";
+            string sqlString = "SELECT DISTINCT o.* FROM Organizations o, URO uro WHERE uro.user_id=@user_id and o.organization_id=uro.organization_id";
             SqlCommand komanda = new SqlCommand(sqlString, konekcija);
             komanda.Parameters.AddWithValue("@user_id", user_id);
             try
@@ -583,17 +583,19 @@ namespace MacedonianRedCrossYouth
         {
             string sqlString = "";
             SqlConnection konekcija = getConnection();
+            
             if (activity_type_id == 0)
             {
-                sqlString = "SELECT * FROM Activities WHERE organization_id=@organization_id and @from_date<star_date and @to_date>end_date";
+                sqlString = "SELECT * FROM Activities WHERE organization_id=@organization_id and @from_date<start_time and @to_date>end_time";
             }
             else
             {
-                sqlString = "SELECT * FROM Activities WHERE organization_id=@organization_id and activity_type_id=@activity_type_id and @from_date<star_date and @to_date>end_date";
+                sqlString = "SELECT * FROM Activities WHERE organization_id=@organization_id and activity_type_id=@activity_type_id and @from_date<start_time and @to_date>end_time";
+                
             }
             SqlCommand komanda = new SqlCommand(sqlString, konekcija);
-            komanda.Parameters.AddWithValue("@organization_id", organization_id);
             komanda.Parameters.AddWithValue("@activity_type_id", activity_type_id);
+            komanda.Parameters.AddWithValue("@organization_id", organization_id);
             komanda.Parameters.AddWithValue("@from_date", from_date);
             komanda.Parameters.AddWithValue("@to_date", to_date);
             SqlDataAdapter adapter = new SqlDataAdapter(komanda);

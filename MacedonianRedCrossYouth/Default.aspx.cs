@@ -19,23 +19,22 @@ namespace MacedonianRedCrossYouth
                 Response.Redirect("Login.aspx");
             }
             
-            string proba = firstDay.ToShortDateString();
-            tbFromDate.Text = firstDay.ToLocalTime().ToString("yyyy-MM-dd");
-            tbToDate.Text = lastDay.ToLocalTime().ToString("yyyy-MM-dd");
+            
             MultiView1.ActiveViewIndex = 0;
             if (!IsPostBack)
             {
-           
+                tbFromDate.Text = firstDay.ToLocalTime().ToString("yyyy-MM-dd");
+                tbToDate.Text = lastDay.ToLocalTime().ToString("yyyy-MM-dd");
                 if (Session["organization_id"] != null)
                 {
                     List<Organization> organizations = DatabaseManagement.getChildOrganizations((int)Session["organization_id"]);
-                    
+
                     foreach (Organization o in organizations)
                     {
                         ListItem l = new ListItem(o.getName(), o.getOrganizationID().ToString());
                         ddOrganizations.Items.Add(l);
                     }
-                    if (organizations.Count==0)
+                    if (organizations.Count == 0)
                     {
                         organizations = DatabaseManagement.getUserOrganizations((int)Session["user_id"]);
 
@@ -47,7 +46,7 @@ namespace MacedonianRedCrossYouth
                     }
                     else
                     {
-                        ddOrganizations.SelectedValue = ((int)Session["organization_id"]).ToString(); 
+                        ddOrganizations.SelectedValue = ((int)Session["organization_id"]).ToString();
                     }
 
                     List<ActivityType> activity_types = DatabaseManagement.getActivityTypes();
@@ -57,19 +56,28 @@ namespace MacedonianRedCrossYouth
                         ListItem l = new ListItem(at.getActivityTypeName(), at.getActivityTypeID().ToString());
                         ddActivityTypes.Items.Add(l);
                     }
-                  
+
                 }
-                IspolniAktivnosti();
+
+                IspolniAktivnosti(false);
                 //tbFromDate.Text = now.DataDespesa.ToShortDateString();
                 //tbEndTime.Text = DateTime.Now.ToLocalTime().ToString("dd-MM-yyyy");
             }
-            
+            else
+            {
+                IspolniAktivnosti(true);
+            }
         }
 
-        public void IspolniAktivnosti()
+        public void IspolniAktivnosti(bool flag)
         {
-            int organization_id = int.Parse(ddOrganizations.SelectedValue.ToString());
-            int activity_type_id = int.Parse(ddActivityTypes.SelectedValue.ToString());
+            int organization_id = (int)Session["organization_id"];
+            int activity_type_id = 0;
+            if (flag)
+            {
+                organization_id = int.Parse(ddOrganizations.SelectedValue.ToString());
+                activity_type_id = int.Parse(ddActivityTypes.SelectedValue.ToString());
+            }
             DateTime from_date = Convert.ToDateTime(tbFromDate.Text);
             DateTime to_date = Convert.ToDateTime(tbToDate.Text);
             DataSet ds = DatabaseManagement.getActivities(organization_id, activity_type_id, from_date, to_date);
@@ -78,10 +86,16 @@ namespace MacedonianRedCrossYouth
                 gvActivnosti.DataSource = ds;
                 gvActivnosti.DataBind();
                 ViewState["aktivnosti"] = ds;
+                lblError.Text = "";
+                lblError.Visible = false;
+                gvActivnosti.Visible = true;
+
             }
             else
             {
                 lblError.Text = "Naprajte nekoja aktivnost ne se zaebavajte :P";
+                lblError.Visible = true;
+                gvActivnosti.Visible = false;
             }
         }
 
@@ -102,6 +116,16 @@ namespace MacedonianRedCrossYouth
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("AddActivity.aspx");
+        }
+
+        protected void gvActivnosti_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnRefresh_Click(object sender, ImageClickEventArgs e)
+        {
+           // Response.Redirect("Default.aspx");
         }
     }
 }
