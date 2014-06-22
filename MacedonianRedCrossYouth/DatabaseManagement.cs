@@ -368,20 +368,25 @@ namespace MacedonianRedCrossYouth
                 komanda.Parameters.AddWithValue("@image_path", image_path);
 
 
-            /*
+            
             string sqlString2 = "INSERT INTO URO (user_id, role_id, organization_id, start_date)" +
                 "VALUES (@user_id, @role_id, @organization_id, @start_date)";
             SqlCommand komanda2 = new SqlCommand(sqlString2, konekcija);
-            komanda2.Parameters.AddWithValue("@user_id", user_id);
-            komanda2.Parameters.AddWithValue("@role_id", 9);
+            komanda2.Parameters.AddWithValue("@role_id", Roles.Volonteer);
             komanda2.Parameters.AddWithValue("@organization_id", organization_id);
             komanda2.Parameters.AddWithValue("@start_date", join_date);
-            */
+            
             try
             {
                 konekcija.Open();
                 int count = komanda.ExecuteNonQuery();
                 //   count = komanda2.ExecuteNonQuery();
+                if (count == 1)
+                {
+                    int userID = DatabaseManagement.getIDFromUsername(username);
+                    komanda2.Parameters.AddWithValue("@user_id", userID);
+                    komanda2.ExecuteNonQuery();
+                }
                 return count == 1;
             }
             catch (Exception err)
@@ -609,6 +614,36 @@ namespace MacedonianRedCrossYouth
                 konekcija.Close();
             }
             return ds;
+        }
+
+        public static int getIDFromUsername(string username)
+        {
+            SqlConnection konekcija = getConnection();
+            string sqlString = "SELECT user_id FROM Users WHERE username=@username";
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            komanda.Parameters.AddWithValue("@username", username);
+
+            try
+            {
+                konekcija.Open();
+                SqlDataReader citac = komanda.ExecuteReader();
+                if (citac.Read())
+                {
+                    int user_id = int.Parse(citac["user_id"].ToString());
+                    return user_id;
+                }
+                else
+                    return 0;
+            }
+            catch (Exception err)
+            {
+
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+            return 0;
         }
     }
 }
