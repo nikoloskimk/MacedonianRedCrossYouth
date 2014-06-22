@@ -25,7 +25,22 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <asp:GridView ID="gvActivnosti" runat="server" AutoGenerateColumns="False">
+                            <asp:GridView ID="gvActivnosti" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" OnSelectedIndexChanged="gvActivnosti_SelectedIndexChanged">
+                                <AlternatingRowStyle BackColor="White" />
+                                <Columns>
+                                    <asp:BoundField DataField="title" HeaderText="Наслов на активност" />
+                                    <asp:BoundField DataField="start_time" HeaderText="Време на започнување" />
+                                    <asp:BoundField DataField="end_time" HeaderText="Време на завршување" />
+                                </Columns>
+                                <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+                                <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+                                <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
+                                <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
+                                <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
+                                <SortedAscendingCellStyle BackColor="#FDF5AC" />
+                                <SortedAscendingHeaderStyle BackColor="#4D0000" />
+                                <SortedDescendingCellStyle BackColor="#FCF6C0" />
+                                <SortedDescendingHeaderStyle BackColor="#820000" />
                             </asp:GridView>
                         </td>
                     </tr>
@@ -40,6 +55,7 @@
 
             </asp:View>
         </asp:MultiView>
-                    <asp:ImageButton ID="ImageButton1" runat="server" Height="32px" ImageUrl="~/Content/image/1403062270_circle_add_plus.png"  Width="32px" OnClick="ImageButton1_Click" />
+                    <asp:ImageButton ID="btnAdd" runat="server" Height="27px" ImageUrl="~/Content/image/add.png"  Width="27px" OnClick="ImageButton1_Click" ImageAlign="Middle" />
+                    <asp:ImageButton ID="btnRefresh" runat="server" Height="32px" ImageUrl="~/Content/image/refresh.png"  Width="32px" OnClick="btnRefresh_Click" ImageAlign="Middle" />
     </form>
 </asp:Content>

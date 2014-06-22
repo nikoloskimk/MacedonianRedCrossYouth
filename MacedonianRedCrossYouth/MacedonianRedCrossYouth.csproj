@@ -94,8 +94,10 @@
     <Content Include="Content\image\1403062286_map_location_pin_map-marker_.png" />
     <Content Include="Content\image\1403062689_check.png" />
     <Content Include="Content\image\1403062727_circle_info_more-information_detail.png" />
+    <Content Include="Content\image\add.png" />
     <Content Include="Content\image\logo-navbar1.png" />
     <Content Include="Content\image\Picture8.png" />
+    <Content Include="Content\image\refresh.png" />
     <Content Include="Default.aspx" />
     <Content Include="Dokumenti.aspx" />
     <Content Include="Korisnik.aspx" />
