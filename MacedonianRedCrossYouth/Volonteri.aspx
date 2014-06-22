@@ -6,8 +6,8 @@
             <div style="float: left;">
                 <asp:ImageButton ID="btnAddVolonter" runat="server" AlternateText="Додади волонтер" Height="32px" ImageUrl="~/Content/image/1403062270_circle_add_plus.png" OnClick="btnAddVolonter_Click" Width="32px" ToolTip="Додади волонтер"></asp:ImageButton>
             </div>
-            <div id="divAdd" style="height: 32px; float: left; padding-top: 7px; padding-left: 5px;">
-                <asp:Label Text="Додади волонтер" runat="server"></asp:Label>
+            <div id="divAdd" style="height: 32px; float: left; padding-top: 7px; padding-left: 5px; cursor: pointer;">
+                <asp:Label Text="Додади волонтер" runat="server" ID="lblAddVolonter"></asp:Label>
             </div>
         </div>
         <div id="controlMessage" style="padding: 10px;">

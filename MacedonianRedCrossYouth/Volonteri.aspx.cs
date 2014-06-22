@@ -34,8 +34,10 @@ namespace MacedonianRedCrossYouth
                 IspolniVolonteri();
 
                 int user_id = int.Parse(Session["user_id"].ToString());
-                if(!DatabaseManagement.canAddVolonteri(user_id))
+                if (!DatabaseManagement.canAddVolonteri(user_id)) { 
                     btnAddVolonter.Visible = false;
+                    lblAddVolonter.Visible = false;
+                }
             }
             else
             {

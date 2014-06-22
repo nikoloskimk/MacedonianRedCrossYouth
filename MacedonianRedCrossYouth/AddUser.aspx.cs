@@ -98,7 +98,7 @@ namespace MacedonianRedCrossYouth
             }
             DateTime birth_date = Convert.ToDateTime(tbDatumRaganje.Text);
             DateTime join_date = Convert.ToDateTime(tbDatumPristap.Text);
-            string image_path = Convert.ToString(FileUpload1.PostedFile.FileName); // zimam pateka na slikata i stavam gu u baza http://stackoverflow.com/questions/1130560/get-full-path-of-a-file-with-fileupload-control
+     //       string image_path = Convert.ToString(FileUpload1.PostedFile.FileName); // zimam pateka na slikata i stavam gu u baza http://stackoverflow.com/questions/1130560/get-full-path-of-a-file-with-fileupload-control
             int zanimanje = 0;
             if(ddZanimanje.SelectedIndex!=-1){
                 zanimanje = ddZanimanje.SelectedIndex;
@@ -113,19 +113,22 @@ namespace MacedonianRedCrossYouth
                 organization_id = Convert.ToInt32(ddOrganizations.SelectedItem.Value);
             }
 
-            DateTime member_since = new DateTime();
+            DateTime member_since = DateTime.Now;
             if (Clen.Checked)
             {
-                member_since = Convert.ToDateTime(tbMemberSince.Text);
+                if(tbMemberSince.Text != "")
+                    member_since = Convert.ToDateTime(tbMemberSince.Text);
             }
+
+            string uploadedPath = UploadFile(sender, e);
 
             //proveri ga dodavanjeto !!!!!!!
             Boolean isAdded = DatabaseManagement.InsertUser(username, password, tbFirstName.Text, tbLastName.Text, gender, birth_date, join_date,
-               image_path, tbAddress.Text, tbPhone.Text, tbEmail.Text, Aktiven.Checked, Clen.Checked, member_since, zanimanje, tbCity.Text, nationality_id, faculty_id, organization_id);
+               uploadedPath, tbAddress.Text, tbPhone.Text, tbEmail.Text, Aktiven.Checked, Clen.Checked, member_since, zanimanje, tbCity.Text, nationality_id, faculty_id, organization_id);
 
             if (isAdded)
             {
-                Response.Redirect("VolonterskiMenadzment.aspx?succ=1");
+                Response.Redirect("Volonteri.aspx?succ=1");
             }
             else
             {
@@ -136,12 +139,11 @@ namespace MacedonianRedCrossYouth
                 // Call a helper method routine to save the file.
                 SaveFile(FileUpload1.PostedFile);
             */
-            UploadFile(sender, e);
         }
 
         string image_path = "";
 
-        protected void UploadFile(Object s, EventArgs e)
+        protected string UploadFile(Object s, EventArgs e)
         {
             // First we check to see if the user has selected a file
             if (FileUpload1.HasFile)
@@ -149,15 +151,29 @@ namespace MacedonianRedCrossYouth
                 // Find the fileUpload control
                 string filename = FileUpload1.FileName;
 
+                string extension = System.IO.Path.GetExtension(FileUpload1.FileName);
+
+                if (extension != ".jpg" && extension != ".png")
+                {
+                    //  if is not image, don't upload
+                    return null;
+                }
+
                 // Check if the directory we want the image uploaded to actually exists or not
-                if (!Directory.Exists(MapPath(@"Uploaded-Files")))
+                if (!Directory.Exists(MapPath(@"UploadedFiles")))
                 {
                     // If it doesn't then we just create it before going any further
-                    Directory.CreateDirectory(MapPath(@"Uploaded-Files"));
+                    Directory.CreateDirectory(MapPath(@"UploadedFiles"));
+                }
+
+                if (!Directory.Exists(MapPath(@"UploadedFiles/images")))
+                {
+                    // If it doesn't then we just create it before going any further
+                    Directory.CreateDirectory(MapPath(@"UploadedFiles/images"));
                 }
 
                 // Specify the upload directory
-                string directory = Server.MapPath(@"Uploaded-Files\");
+                string directory = Server.MapPath(@"UploadedFiles/images/");
 
                 // Create a bitmap of the content of the fileUpload control in memory
                 Bitmap originalBMP = new Bitmap(FileUpload1.FileContent);
@@ -188,15 +204,42 @@ namespace MacedonianRedCrossYouth
                 // Draw the new graphic based on the resized bitmap
                 oGraphics.DrawImage(originalBMP, 0, 0, newWidth, newHeight);
 
-                // Save the new graphic file to the server
-                newBMP.Save(directory + "tn_" + filename);
+                string fileName = FileUpload1.FileName;
+                // Create the path and file name to check for duplicates.
+                string pathToCheck = directory + fileName;
 
+                // Create a temporary file name to use for checking duplicates.
+                string tempfileName = "";
+
+                // Check to see if a file already exists with the
+                // same name as the file to upload.        
+                if (System.IO.File.Exists(pathToCheck))
+                {
+                    int counter = 2;
+                    while (System.IO.File.Exists(pathToCheck))
+                    {
+                        // if a file with this name already exists,
+                        // prefix the filename with a number.
+                        tempfileName = counter.ToString() + fileName;
+                        pathToCheck = directory + tempfileName;
+                        counter++;
+                    }
+
+                    fileName = tempfileName;
+
+                    // Notify the user that the file name was changed.
+                    //  UploadStatusLabel.Text = "A file with the same name already exists." +
+                    //     "<br />Your file was saved as " + fileName;
+                }
+
+                // Save the new graphic file to the server
+                newBMP.Save(directory + fileName);
                 // Once finished with the bitmap objects, we deallocate them.
                 originalBMP.Dispose();
                 newBMP.Dispose();
                 oGraphics.Dispose();
 
-                
+                return fileName;
                 // Display the image to the user
                // img1.Visible = true;
                // img1.ImageUrl = @"/Uploaded-Files/tn_" + filename;
@@ -205,10 +248,12 @@ namespace MacedonianRedCrossYouth
             }
             else
             {
+                return null;
              //   UploadStatusLabel.Text = "No file uploaded!";
             }
         }
 
+        /*
         void SaveFile(HttpPostedFile file)
         {
 
@@ -271,6 +316,7 @@ namespace MacedonianRedCrossYouth
             FileUpload1.SaveAs(savePath);
             image_path = savePath;
         }
+        */
 
         protected void Clen_CheckedChanged(object sender, EventArgs e)
         {
@@ -282,6 +328,11 @@ namespace MacedonianRedCrossYouth
             {
                 tbMemberSince.Enabled = false;
             }
+        }
+
+        protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+
         }
     }
 }

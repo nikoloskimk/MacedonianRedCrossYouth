@@ -10,6 +10,18 @@ namespace MacedonianRedCrossYouth
 {
     public class DatabaseManagement
     {
+        public enum Roles
+        {
+            Admin = 1,
+            PresidentCKRM = 2,
+            VicePresidentCKRM = 3,
+            CoordinativeMember = 4,
+            ClubManager = 5,
+            ViceClubManager = 6,
+            CoordinativeMemberClub = 7,
+            ConcuilMember = 8,
+            Volonteer = 9
+        }
 
         private static SqlConnection getConnection()
         {
@@ -339,7 +351,6 @@ namespace MacedonianRedCrossYouth
             komanda.Parameters.AddWithValue("@gender", gender);
             komanda.Parameters.AddWithValue("@birth_date", birth_date);
             komanda.Parameters.AddWithValue("@join_date", join_date);
-            komanda.Parameters.AddWithValue("@image_path", image_path);
             komanda.Parameters.AddWithValue("@address", address);
             komanda.Parameters.AddWithValue("@phone", phone);
             komanda.Parameters.AddWithValue("@email", email);
@@ -350,6 +361,12 @@ namespace MacedonianRedCrossYouth
             komanda.Parameters.AddWithValue("@nationality_id", nationality_id);
             komanda.Parameters.AddWithValue("@faculty_id", faculty_id);
             komanda.Parameters.AddWithValue("@organization_id", organization_id);
+
+            if(image_path == null)
+                komanda.Parameters.AddWithValue("@image_path", DBNull.Value);
+            else
+                komanda.Parameters.AddWithValue("@image_path", image_path);
+
 
             /*
             string sqlString2 = "INSERT INTO URO (user_id, role_id, organization_id, start_date)" +
@@ -497,9 +514,10 @@ namespace MacedonianRedCrossYouth
         public static Boolean canViewMenuItems(int user_id)
         {
             SqlConnection konekcija = getConnection();
-            string sqlString = "SELECT COUNT(*) as numRoles FROM URO WHERE role_id != 9 AND user_id=@user_id";
+            string sqlString = "SELECT COUNT(*) as numRoles FROM URO WHERE role_id != @role AND user_id=@user_id";
             SqlCommand komanda = new SqlCommand(sqlString, konekcija);
             komanda.Parameters.AddWithValue("@user_id", user_id);
+            komanda.Parameters.AddWithValue("@role", (int) Roles.Volonteer);
 
             try
             {
@@ -527,9 +545,11 @@ namespace MacedonianRedCrossYouth
         public static Boolean canAddVolonteri(int user_id)
         {
             SqlConnection konekcija = getConnection();
-            string sqlString = "SELECT COUNT(*) as numRoles FROM URO WHERE (role_id = 5 OR role_id = 6) AND user_id=@user_id";
+            string sqlString = "SELECT COUNT(*) as numRoles FROM URO WHERE (role_id = @r1 OR role_id = @r2) AND user_id=@user_id";
             SqlCommand komanda = new SqlCommand(sqlString, konekcija);
             komanda.Parameters.AddWithValue("@user_id", user_id);
+            komanda.Parameters.AddWithValue("@r1", (int) Roles.ClubManager);
+            komanda.Parameters.AddWithValue("@r2", (int) Roles.ViceClubManager);
 
             try
             {

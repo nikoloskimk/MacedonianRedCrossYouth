@@ -35,7 +35,7 @@ namespace MacedonianRedCrossYouth
                 lblLocation.Text = u.location;
                 lblEmail.Text = u.email;
 
-                image.ImageUrl = u.image_path;
+                image.ImageUrl = "UploadedFiles/images/" + u.image_path;
             }
         }
 
