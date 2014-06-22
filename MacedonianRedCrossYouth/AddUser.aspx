@@ -57,7 +57,6 @@
                         <asp:RequiredFieldValidator ID="rfVPhone" runat="server" ControlToValidate="tbPhone" Display="None" ErrorMessage="Полето за телефон е задолжително"></asp:RequiredFieldValidator>
                         <asp:RequiredFieldValidator ID="rfVUsername" runat="server" ControlToValidate="tbUsername" Display="None" ErrorMessage="Полето за корисничко име е задолжително"></asp:RequiredFieldValidator>
                         <asp:RequiredFieldValidator ID="rfVPassword" runat="server" ControlToValidate="tbPassword" Display="None" ErrorMessage="Полето за лозинка е задолжително"></asp:RequiredFieldValidator>
-                        <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="Мора да изберете датум на заченување" OnServerValidate="CustomValidator1_ServerValidate" ClientValidationFunction="ClientValidate" ControlToValidate="tbMemberSince" Display="None"></asp:CustomValidator>
                     </td>
                 </tr>
                 <tr>
