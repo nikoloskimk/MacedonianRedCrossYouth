@@ -362,20 +362,20 @@ namespace MacedonianRedCrossYouth
             komanda.Parameters.AddWithValue("@faculty_id", faculty_id);
             komanda.Parameters.AddWithValue("@organization_id", organization_id);
 
-            if(image_path == null)
+            if (image_path == null)
                 komanda.Parameters.AddWithValue("@image_path", DBNull.Value);
             else
                 komanda.Parameters.AddWithValue("@image_path", image_path);
 
 
-            
+
             string sqlString2 = "INSERT INTO URO (user_id, role_id, organization_id, start_date)" +
                 "VALUES (@user_id, @role_id, @organization_id, @start_date)";
             SqlCommand komanda2 = new SqlCommand(sqlString2, konekcija);
             komanda2.Parameters.AddWithValue("@role_id", Roles.Volonteer);
             komanda2.Parameters.AddWithValue("@organization_id", organization_id);
             komanda2.Parameters.AddWithValue("@start_date", join_date);
-            
+
             try
             {
                 konekcija.Open();
@@ -435,11 +435,49 @@ namespace MacedonianRedCrossYouth
             return false;
         }
 
-        public static DataSet getVolonteri()
+        public static DataSet getVolonteri(int organization_id)
         {
             SqlConnection konekcija = getConnection();
-            string sqlString = "SELECT u.first_name, u.last_name, o.organization_name, u.is_member, u.is_active FROM Users u, Organizations o WHERE u.organization_id = o.organization_id";
+            string sqlString = "SELECT u.user_id, u.first_name, u.last_name, u.birth_date, o.organization_name, u.is_member, u.is_active, h.hours FROM Users u, Organizations o, "
+           + "(SELECT user_id, SUM(hours_spent) as hours FROM UserActivities GROUP BY(user_id) UNION SELECT user_id, 0 as hours from Users WHERE user_id NOT IN (SELECT DISTINCT user_id FROM UserActivities)) h " +
+                "WHERE u.organization_id = o.organization_id AND u.user_id = h.user_id "
+            + "AND o.organization_id=@organization_id";
+
+
             SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            komanda.Parameters.AddWithValue("@organization_id", organization_id);
+
+            SqlDataAdapter adapter = new SqlDataAdapter(komanda);
+            DataSet ds = new DataSet();
+
+            try
+            {
+                konekcija.Open();
+                adapter.Fill(ds, "Users");
+                return ds;
+            }
+            catch (Exception err)
+            {
+
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+            return ds;
+        }
+
+        public static DataSet getActivities(int volonter_id)
+        {
+            SqlConnection konekcija = getConnection();
+            string sqlString = "SELECT a.activity_id, a.title, a.start_time, a.end_time, ua.hours_spent " +
+                "FROM Activities a, UserActivities ua " +
+                "WHERE a.activity_id = ua.activity_id AND " +
+                "ua.user_id = @volonter_id";
+
+
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            komanda.Parameters.AddWithValue("@volonter_id", volonter_id);
 
             SqlDataAdapter adapter = new SqlDataAdapter(komanda);
             DataSet ds = new DataSet();
@@ -522,7 +560,7 @@ namespace MacedonianRedCrossYouth
             string sqlString = "SELECT COUNT(*) as numRoles FROM URO WHERE role_id != @role AND user_id=@user_id";
             SqlCommand komanda = new SqlCommand(sqlString, konekcija);
             komanda.Parameters.AddWithValue("@user_id", user_id);
-            komanda.Parameters.AddWithValue("@role", (int) Roles.Volonteer);
+            komanda.Parameters.AddWithValue("@role", (int)Roles.Volonteer);
 
             try
             {
@@ -553,8 +591,76 @@ namespace MacedonianRedCrossYouth
             string sqlString = "SELECT COUNT(*) as numRoles FROM URO WHERE (role_id = @r1 OR role_id = @r2) AND user_id=@user_id";
             SqlCommand komanda = new SqlCommand(sqlString, konekcija);
             komanda.Parameters.AddWithValue("@user_id", user_id);
-            komanda.Parameters.AddWithValue("@r1", (int) Roles.ClubManager);
-            komanda.Parameters.AddWithValue("@r2", (int) Roles.ViceClubManager);
+            komanda.Parameters.AddWithValue("@r1", (int)Roles.ClubManager);
+            komanda.Parameters.AddWithValue("@r2", (int)Roles.ViceClubManager);
+
+            try
+            {
+                konekcija.Open();
+                SqlDataReader citac = komanda.ExecuteReader();
+                if (citac.Read())
+                {
+                    int numRoles = int.Parse(citac["numRoles"].ToString());
+                    return numRoles > 0;
+                }
+                else
+                    return false;
+            }
+            catch (Exception err)
+            {
+
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+            return false;
+        }
+
+        public static Boolean canViewVolonteriHimOrganization(int user_id, int organization_id)
+        {
+            SqlConnection konekcija = getConnection();
+            string sqlString = "SELECT COUNT(*) as numRoles FROM URO WHERE (role_id = @r1 OR role_id = @r2 OR role_id = @r3) AND user_id=@user_id AND organization_id=@organization_id";
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            komanda.Parameters.AddWithValue("@user_id", user_id);
+            komanda.Parameters.AddWithValue("@organization_id", organization_id);
+            komanda.Parameters.AddWithValue("@r1", (int)Roles.ClubManager);
+            komanda.Parameters.AddWithValue("@r2", (int)Roles.ViceClubManager);
+            komanda.Parameters.AddWithValue("@r3", (int)Roles.CoordinativeMemberClub);
+
+            try
+            {
+                konekcija.Open();
+                SqlDataReader citac = komanda.ExecuteReader();
+                if (citac.Read())
+                {
+                    int numRoles = int.Parse(citac["numRoles"].ToString());
+                    return numRoles > 0;
+                }
+                else
+                    return false;
+            }
+            catch (Exception err)
+            {
+
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+            return false;
+        }
+
+        public static Boolean canViewVolonteriAllOrganizations(int user_id)
+        {
+            SqlConnection konekcija = getConnection();
+            string sqlString = "SELECT COUNT(*) as numRoles FROM URO WHERE (role_id = @r1 OR role_id = @r2 OR role_id = @r3 OR role_id = @r4) AND user_id=@user_id";
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            komanda.Parameters.AddWithValue("@user_id", user_id);
+            komanda.Parameters.AddWithValue("@r1", (int)Roles.Admin);
+            komanda.Parameters.AddWithValue("@r2", (int)Roles.PresidentCKRM);
+            komanda.Parameters.AddWithValue("@r3", (int)Roles.VicePresidentCKRM);
+            komanda.Parameters.AddWithValue("@r4", (int)Roles.CoordinativeMember);
 
             try
             {
@@ -583,7 +689,7 @@ namespace MacedonianRedCrossYouth
         {
             string sqlString = "";
             SqlConnection konekcija = getConnection();
-            
+
             if (activity_type_id == 0)
             {
                 sqlString = "SELECT * FROM Activities WHERE organization_id=@organization_id and @from_date<start_time and @to_date>end_time";
@@ -591,7 +697,7 @@ namespace MacedonianRedCrossYouth
             else
             {
                 sqlString = "SELECT * FROM Activities WHERE organization_id=@organization_id and activity_type_id=@activity_type_id and @from_date<start_time and @to_date>end_time";
-                
+
             }
             SqlCommand komanda = new SqlCommand(sqlString, konekcija);
             komanda.Parameters.AddWithValue("@activity_type_id", activity_type_id);

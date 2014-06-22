@@ -14,6 +14,12 @@ namespace MacedonianRedCrossYouth
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            /*
+            if (IsPostBack)
+            {
+                string s = FileUpload1.FileName;
+            }
+            */
             if (!IsPostBack)
             {
                 if (Session["user_id"] == null)

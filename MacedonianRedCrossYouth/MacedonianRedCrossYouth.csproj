@@ -122,7 +122,6 @@
     <Content Include="Scripts\jquery-ui-1.10.4.js" />
     <Content Include="Scripts\jquery.tabs.js" />
     <Content Include="Volonteri.aspx" />
-    <Content Include="VolonterskiMenadzment.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -210,13 +209,6 @@
     </Compile>
     <Compile Include="Volonteri.aspx.designer.cs">
       <DependentUpon>Volonteri.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="VolonterskiMenadzment.aspx.cs">
-      <DependentUpon>VolonterskiMenadzment.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="VolonterskiMenadzment.aspx.designer.cs">
-      <DependentUpon>VolonterskiMenadzment.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

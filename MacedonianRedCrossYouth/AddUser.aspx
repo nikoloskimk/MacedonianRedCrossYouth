@@ -152,7 +152,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <asp:FileUpload ID="FileUpload1" runat="server" />
+                        <asp:FileUpload ID="FileUpload1" runat="server" ViewStateMode="Enabled" />
                     </td>
                 </tr>
                 <tr class="highlight">

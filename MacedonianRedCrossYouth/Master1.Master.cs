@@ -34,9 +34,6 @@ namespace CrvenKrst
                 case "/Dokumenti.aspx":
                     liDokumenti.Attributes.Add("class", "active");
                     break;
-                case "/VolonterskiMenadzment.aspx":
-                    liVolonterskiMenadzmenti.Attributes.Add("class", "active");
-                    break;
                 default:
                     liAktivnosti.Attributes.Add("class", "active");
                     break;
@@ -51,7 +48,6 @@ namespace CrvenKrst
                 {
                     liVolonteri.Visible = false;
                     liClenovi.Visible = false;
-                    liVolonterskiMenadzmenti.Visible = false;
                 }
             }
             else
