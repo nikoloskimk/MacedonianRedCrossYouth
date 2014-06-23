@@ -20,7 +20,7 @@ namespace MacedonianRedCrossYouth
             }
             
             
-            MultiView1.ActiveViewIndex = 0;
+            //MultiView1.ActiveViewIndex = 0;
             if (!IsPostBack)
             {
                 tbFromDate.Text = firstDay.ToLocalTime().ToString("yyyy-MM-dd");
@@ -58,14 +58,20 @@ namespace MacedonianRedCrossYouth
                     }
 
                 }
-
+                tbDetalis.Visible = false;
                 IspolniAktivnosti(false);
                 //tbFromDate.Text = now.DataDespesa.ToShortDateString();
                 //tbEndTime.Text = DateTime.Now.ToLocalTime().ToString("dd-MM-yyyy");
             }
             else
             {
+                //string[] parts = tbFromDate.Text.Split('-');
+                //DateTime month = new DateTime(int.Parse(parts[0]), DateTime.Now.Month, 1);
+                //RangeValidator1.MaximumValue = lastDay.ToLocalTime().ToString("yyyy-MM-dd");
+                //RangeValidator1.MinimumValue = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                 IspolniAktivnosti(true);
+                tbDetalis.Visible = false;
+                gvActivnosti.SelectedIndex = -1;
             }
         }
 
@@ -96,6 +102,7 @@ namespace MacedonianRedCrossYouth
                 lblError.Text = "Naprajte nekoja aktivnost ne se zaebavajte :P";
                 lblError.Visible = true;
                 gvActivnosti.Visible = false;
+                tbDetalis.Visible = false;
             }
         }
 
@@ -129,7 +136,6 @@ namespace MacedonianRedCrossYouth
             int count = DatabaseManagement.getActivityUsersCount(activity_id);
             tbDetalis.Text = "На активноста со наслов \"" + gvActivnosti.SelectedRow.Cells[0].Text + "\" присуствуваа " + count.ToString() + " волонтери.";
             tbDetalis.Visible = true;
-            pnlDetalis.Visible = true;
          }
         protected void btnRefresh_Click(object sender, ImageClickEventArgs e)
         {

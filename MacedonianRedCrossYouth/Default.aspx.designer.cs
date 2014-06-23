@@ -22,24 +22,6 @@ namespace MacedonianRedCrossYouth {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// MultiView1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView MultiView1;
-        
-        /// <summary>
-        /// View1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View View1;
-        
-        /// <summary>
         /// ddOrganizations control.
         /// </summary>
         /// <remarks>
@@ -76,15 +58,6 @@ namespace MacedonianRedCrossYouth {
         protected global::System.Web.UI.WebControls.TextBox tbToDate;
         
         /// <summary>
-        /// gvActivnosti control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvActivnosti;
-        
-        /// <summary>
         /// lblError control.
         /// </summary>
         /// <remarks>
@@ -94,13 +67,13 @@ namespace MacedonianRedCrossYouth {
         protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
-        /// pnlDetalis control.
+        /// gvActivnosti control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlDetalis;
+        protected global::System.Web.UI.WebControls.GridView gvActivnosti;
         
         /// <summary>
         /// tbDetalis control.
@@ -110,24 +83,6 @@ namespace MacedonianRedCrossYouth {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbDetalis;
-        
-        /// <summary>
-        /// Button2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
-        
-        /// <summary>
-        /// View2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View View2;
         
         /// <summary>
         /// btnAdd control.
