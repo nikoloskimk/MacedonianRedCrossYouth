@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="Default Web Site/RCYouth" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Filip\\Documents\\GitHub\\MacedonianRedCrossYouth\\MacedonianRedCrossYouth\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Filip\\Documents\\GitHub\\MacedonianRedCrossYouth\\MacedonianRedCrossYouth\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="mojaKonekcija-Web.config Connection String" description="" value="Data Source=FILIP-PC\SQLEXPRESS;Initial Catalog=RCYouth;Integrated Security=True" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Filip\\Documents\\GitHub\\MacedonianRedCrossYouth\\MacedonianRedCrossYouth\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='mojaKonekcija']/@connectionString" />
+  </parameter>
+</parameters>
