@@ -105,8 +105,6 @@
     <Content Include="Content\css\bootstrap-theme.css.map" />
     <Content Include="Content\css\bootstrap.css.map" />
     <None Include="Properties\PublishProfiles\Default Web Site.pubxml" />
-    <None Include="Properties\PublishProfiles\MyProfile.pubxml" />
-    <None Include="Properties\PublishProfiles\Test.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Restricted.aspx" />
@@ -218,7 +216,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="uploads\images\" />
+    <Folder Include="UploadedFiles\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
