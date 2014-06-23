@@ -13,29 +13,37 @@ namespace CrvenKrst
         protected void Page_Load(object sender, EventArgs e)
         {
             string path = HttpContext.Current.Request.Url.LocalPath;
+            string[] parts = path.Split('/');
+            path = parts[parts.Length - 1];
+
             switch (path)
             {
-                case "/Volonteri.aspx":
+                case "Volonteri.aspx":
                     liVolonteri.Attributes.Add("class", "active");
                     break;
-                case "/AddUser.aspx":
+                case "AddUser.aspx":
                     liVolonteri.Attributes.Add("class", "active");
                     break;
-                case "/Default.aspx":
+                case "Default.aspx":
                     liAktivnosti.Attributes.Add("class", "active");
                     break;
-                case "/Korisnik.aspx":
+                case "Korisnik.aspx":
                     liKorisnik.Attributes.Add("class", "active");
                     break;
-                case "/Clenovi.aspx":
+                case "Clenovi.aspx":
                     liClenovi.Attributes.Add("class", "active");
                     break;
-                case "/Dokumenti.aspx":
+                case "Dokumenti.aspx":
                     liDokumenti.Attributes.Add("class", "active");
                     break;
+                case "Ulogi.aspx":
+                    liUlogi.Attributes.Add("class", "active");
+                    break;
+                    /*
                 default:
                     liAktivnosti.Attributes.Add("class", "active");
                     break;
+                     */
             }
 
             if (Session["user_id"] != null)
@@ -47,6 +55,16 @@ namespace CrvenKrst
                 {
                     liVolonteri.Visible = false;
                     liClenovi.Visible = false;
+                    liUlogi.Visible = false;
+                }
+
+                if (DatabaseManagement.isUserAdmin(user_id))
+                {
+                    liUlogi.Visible = true;
+                }
+                else
+                {
+                    liUlogi.Visible = false;
                 }
             }
             else

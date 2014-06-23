@@ -14,6 +14,10 @@ namespace MacedonianRedCrossYouth
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["user_id"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
             /*
             if (IsPostBack)
             {
@@ -22,13 +26,15 @@ namespace MacedonianRedCrossYouth
             */
             if (!IsPostBack)
             {
-                if (Session["user_id"] == null)
-                {
-                    Response.Redirect("Login.aspx");
-                }
+                
                 int user_id = int.Parse(Session["user_id"].ToString());
-                if (!DatabaseManagement.canAddVolonteri(user_id))
+                if (!DatabaseManagement.canAddVolonteri(user_id) && !DatabaseManagement.isUserAdmin(user_id))
                     Response.Redirect("Restricted.aspx");
+
+                if (DatabaseManagement.isUserAdmin(user_id))
+                {
+                    ddOrganizations.Enabled = true;
+                }
 
                 tbDatumPristap.Text = DateTime.Now.ToLocalTime().ToString("yyyy-MM-dd");
                 //organizations

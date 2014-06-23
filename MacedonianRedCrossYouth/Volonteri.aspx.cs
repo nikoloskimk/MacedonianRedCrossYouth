@@ -64,7 +64,7 @@ namespace MacedonianRedCrossYouth
                 }
                 IspolniVolonteri(organization_id);
 
-                if (!DatabaseManagement.canAddVolonteri(user_id))
+                if (!DatabaseManagement.canAddVolonteri(user_id) && !DatabaseManagement.isUserAdmin(user_id))
                 {
                     btnAddVolonter.Visible = false;
                     lblAddVolonter.Visible = false;
@@ -126,6 +126,13 @@ namespace MacedonianRedCrossYouth
                 lblAddVolonter.Visible = false;
             }
             else
+            {
+                btnAddVolonter.Visible = true;
+                lblAddVolonter.Visible = true;
+            }
+
+            int user_id = int.Parse(Session["user_id"].ToString());
+            if (DatabaseManagement.isUserAdmin(user_id))
             {
                 btnAddVolonter.Visible = true;
                 lblAddVolonter.Visible = true;

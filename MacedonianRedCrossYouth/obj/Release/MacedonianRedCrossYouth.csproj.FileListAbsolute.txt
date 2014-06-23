@@ -1,0 +1,5 @@
+C:\Users\Filip\Documents\GitHub\MacedonianRedCrossYouth\MacedonianRedCrossYouth\bin\MacedonianRedCrossYouth.dll.config
+C:\Users\Filip\Documents\GitHub\MacedonianRedCrossYouth\MacedonianRedCrossYouth\bin\MacedonianRedCrossYouth.dll
+C:\Users\Filip\Documents\GitHub\MacedonianRedCrossYouth\MacedonianRedCrossYouth\bin\MacedonianRedCrossYouth.pdb
+C:\Users\Filip\Documents\GitHub\MacedonianRedCrossYouth\MacedonianRedCrossYouth\obj\Release\MacedonianRedCrossYouth.dll
+C:\Users\Filip\Documents\GitHub\MacedonianRedCrossYouth\MacedonianRedCrossYouth\obj\Release\MacedonianRedCrossYouth.pdb

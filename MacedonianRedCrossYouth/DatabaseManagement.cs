@@ -242,6 +242,7 @@ namespace MacedonianRedCrossYouth
                     u.username = citac["username"].ToString();
                     u.gender = Convert.ToBoolean(citac["gender"].ToString());
                     u.birth_date = Convert.ToDateTime(citac["birth_date"].ToString());
+                    u.organization_id = int.Parse(citac["organization_id"].ToString());
                     u.organization_name = citac["organization_name"].ToString();
                     u.join_date = Convert.ToDateTime(citac["join_date"].ToString());
                     u.location = citac["location"].ToString();
@@ -688,6 +689,37 @@ namespace MacedonianRedCrossYouth
             return false;
         }
 
+        public static Boolean isUserAdmin(int user_id)
+        {
+            SqlConnection konekcija = getConnection();
+            string sqlString = "SELECT COUNT(*) as numRoles FROM URO WHERE role_id = @r1 AND user_id=@user_id";
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            komanda.Parameters.AddWithValue("@user_id", user_id);
+            komanda.Parameters.AddWithValue("@r1", (int)Roles.Admin);
+
+            try
+            {
+                konekcija.Open();
+                SqlDataReader citac = komanda.ExecuteReader();
+                if (citac.Read())
+                {
+                    int numRoles = int.Parse(citac["numRoles"].ToString());
+                    return numRoles > 0;
+                }
+                else
+                    return false;
+            }
+            catch (Exception err)
+            {
+                Console.Write(err.ToString());
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+            return false;
+        }
+
         public static DataSet getActivities(int organization_id, int activity_type_id, DateTime from_date, DateTime to_date)
         {
             string sqlString = "";
@@ -788,6 +820,135 @@ namespace MacedonianRedCrossYouth
             }
 
             return users;
+        }
+
+        public static List<User> getAllUsers()
+        {
+            List<User> users = new List<User>();
+            SqlConnection konekcija = getConnection();
+            string sqlString = "SELECT u.*, o.organization_name FROM Users u, Organizations o WHERE o.organization_id = u.organization_id";
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+
+            try
+            {
+                konekcija.Open();
+                SqlDataReader citac = komanda.ExecuteReader();
+                while (citac.Read())
+                {
+                    User u = new User();
+                    u.user_id = int.Parse(citac["user_id"].ToString());
+                    u.first_name = citac["first_name"].ToString();
+                    u.last_name = citac["last_name"].ToString();
+                    u.organization_name = citac["organization_name"].ToString();
+                    users.Add(u);
+                }
+            }
+            catch (Exception err)
+            {
+                Console.Write(err.ToString());
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+
+            return users;
+        }
+
+        public static List<Roles> getRolesForUser(int user_id)
+        {
+            List<Roles> roles = new List<Roles>();
+            SqlConnection konekcija = getConnection();
+            string sqlString = "SELECT role_id FROM URO WHERE user_id = @user_id";
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            komanda.Parameters.AddWithValue("@user_id", user_id);
+            try
+            {
+                konekcija.Open();
+                SqlDataReader citac = komanda.ExecuteReader();
+                while (citac.Read())
+                {
+                    int role_id = int.Parse(citac["role_id"].ToString());
+                    roles.Add((Roles) role_id);
+                }
+            }
+            catch (Exception err)
+            {
+                Console.Write(err.ToString());
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+
+            return roles;
+        }
+
+        public static Boolean saveRolesForUser(int user_id, List<int> newRoles)
+        {
+            User user = getUserByID(user_id);
+            List<Roles> roles = getRolesForUser(user_id);
+            List<int> oldRoles = new List<int>();
+            for (int i = 0; i < roles.Count; i++)
+            {
+                oldRoles.Add((int)roles[i]);
+            }
+            for (int i = 0; i < oldRoles.Count; )
+            {
+                if (newRoles.Contains(oldRoles[i]))
+                {
+                    newRoles.Remove(oldRoles[i]);
+                    oldRoles.RemoveAt(i);
+                }
+                else
+                {
+                    i++;
+                }
+            }
+
+            SqlConnection konekcija = getConnection();
+            try
+            {
+                konekcija.Open();
+
+                //DELETE OLD ROLES
+                for (int i = 0; i < oldRoles.Count; i++) {
+                    if (oldRoles[i] == 9) continue;
+                    SqlCommand komanda = new SqlCommand();
+                    komanda.Connection = konekcija;
+                    komanda.CommandText = "DELETE FROM URO where user_id = @user_id AND role_id = @role_id";
+                    komanda.Parameters.AddWithValue("@user_id", user_id);
+                    komanda.Parameters.AddWithValue("@role_id", oldRoles[i]);
+                    komanda.ExecuteNonQuery();
+                }
+
+                //ADD NEW ROLES
+                for (int i = 0; i < newRoles.Count; i++)
+                {
+                    SqlCommand komanda = new SqlCommand();
+                    komanda.Connection = konekcija;
+                    komanda.CommandText = "INSERT INTO URO (user_id, role_id, organization_id, start_date)" +
+                "VALUES (@user_id, @role_id, @organization_id, @start_date)";
+
+                    komanda.Parameters.AddWithValue("@user_id", user_id);
+                    komanda.Parameters.AddWithValue("@role_id", newRoles[i]);
+                    komanda.Parameters.AddWithValue("@organization_id", user.getOrganizationId());
+                    komanda.Parameters.AddWithValue("@start_date", DateTime.Now);
+
+                    komanda.ExecuteNonQuery();
+                }
+
+            }
+            catch (Exception err)
+            {
+                Console.Write(err.ToString());
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+
+            return true;
         }
 
         public static DataSet getUsersOnActivity(int activity_id)
