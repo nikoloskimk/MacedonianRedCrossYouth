@@ -48,6 +48,7 @@
                 <li id="liAktivnosti" runat="server"><a href="Default.aspx" id="Aktivnosti">Активности</a></li>
                 <li id="liVolonteri" runat="server"><a href="Volonteri.aspx" id="Volonteri">Волонтери</a></li>
                 <li id="liClenovi" runat="server"><a href="Clenovi.aspx" id="Clenovi">Членови</a></li>
+                <li id="liUlogi" runat="server"><a href="Ulogi.aspx" id="Ulogi">Улоги</a></li>
                 <li id="liDokumenti" runat="server"><a href="Dokumenti.aspx" id="Dokumenti">Документи</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" style="padding-right: 30px;">

@@ -5,3 +5,10 @@ MacedonianRedCrossYouth/bin/MacedonianRedCrossYouth.pdb
 MacedonianRedCrossYouth/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 MacedonianRedCrossYouth/obj/Debug/MacedonianRedCrossYouth.dll
 MacedonianRedCrossYouth/obj/Debug/MacedonianRedCrossYouth.pdb
+*.pdb
+*.dll
+*.cache
+*.pdb
+*.dll
+*.csproj
+*.suo

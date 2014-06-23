@@ -47,6 +47,16 @@ namespace CrvenKrst
                 {
                     liVolonteri.Visible = false;
                     liClenovi.Visible = false;
+                    liUlogi.Visible = false;
+                }
+
+                if (DatabaseManagement.isUserAdmin(user_id))
+                {
+                    liUlogi.Visible = true;
+                }
+                else
+                {
+                    liUlogi.Visible = false;
                 }
             }
             else

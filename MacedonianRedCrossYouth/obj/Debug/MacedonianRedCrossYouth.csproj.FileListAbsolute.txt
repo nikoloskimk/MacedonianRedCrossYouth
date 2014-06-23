@@ -3,3 +3,4 @@ C:\Users\Filip\Documents\GitHub\MacedonianRedCrossYouth\MacedonianRedCrossYouth\
 C:\Users\Filip\Documents\GitHub\MacedonianRedCrossYouth\MacedonianRedCrossYouth\bin\MacedonianRedCrossYouth.pdb
 C:\Users\Filip\Documents\GitHub\MacedonianRedCrossYouth\MacedonianRedCrossYouth\obj\Debug\MacedonianRedCrossYouth.dll
 C:\Users\Filip\Documents\GitHub\MacedonianRedCrossYouth\MacedonianRedCrossYouth\obj\Debug\MacedonianRedCrossYouth.pdb
+C:\Users\Filip\Documents\GitHub\MacedonianRedCrossYouth\MacedonianRedCrossYouth\obj\Debug\MacedonianRedCrossYouth.csprojResolveAssemblyReference.cache

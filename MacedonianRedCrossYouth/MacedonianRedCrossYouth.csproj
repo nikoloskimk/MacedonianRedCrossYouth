@@ -114,6 +114,7 @@
     <Content Include="Scripts\jquery-ui-1.10.4.js" />
     <Content Include="Scripts\jquery.tabs.js" />
     <Content Include="Scripts\select2.js" />
+    <Content Include="Ulogi.aspx" />
     <Content Include="Volonteri.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -207,6 +208,13 @@
       <DependentUpon>Restricted.aspx</DependentUpon>
     </Compile>
     <Compile Include="Classes\User.cs" />
+    <Compile Include="Ulogi.aspx.cs">
+      <DependentUpon>Ulogi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ulogi.aspx.designer.cs">
+      <DependentUpon>Ulogi.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Volonteri.aspx.cs">
       <DependentUpon>Volonteri.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
