@@ -14,6 +14,12 @@ namespace MacedonianRedCrossYouth
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            /*
+            if (IsPostBack)
+            {
+                string s = FileUpload1.FileName;
+            }
+            */
             if (!IsPostBack)
             {
                 if (Session["user_id"] == null)
@@ -140,8 +146,6 @@ namespace MacedonianRedCrossYouth
                 SaveFile(FileUpload1.PostedFile);
             */
         }
-
-        string image_path = "";
 
         protected string UploadFile(Object s, EventArgs e)
         {
