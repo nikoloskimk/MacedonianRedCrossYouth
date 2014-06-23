@@ -44,5 +44,9 @@ namespace MacedonianRedCrossYouth
         {
             return organization_name;
         }
+        public int getUserId()
+        {
+            return user_id;
+        }
     }
 }

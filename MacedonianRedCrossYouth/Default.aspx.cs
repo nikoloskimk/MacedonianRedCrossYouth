@@ -120,12 +120,26 @@ namespace MacedonianRedCrossYouth
 
         protected void gvActivnosti_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            ShowDetails();
         }
 
+        private void ShowDetails()
+        {
+            int activity_id = int.Parse(gvActivnosti.DataKeys[gvActivnosti.SelectedIndex].Value.ToString());
+            int count = DatabaseManagement.getActivityUsersCount(activity_id);
+            tbDetalis.Text = "На активноста со наслов \"" + gvActivnosti.SelectedRow.Cells[0].Text + "\" присуствуваа " + count.ToString() + " волонтери.";
+            tbDetalis.Visible = true;
+            pnlDetalis.Visible = true;
+         }
         protected void btnRefresh_Click(object sender, ImageClickEventArgs e)
         {
+<<<<<<< HEAD
            // Response.Redirect("Default.aspx");            
+=======
+            int activity_id = 2;
+            string query = "AddUsersActivity.aspx?ID=" + activity_id;
+            Response.Redirect(query);
+>>>>>>> origin/master
         }
     }
 }

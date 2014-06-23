@@ -1,6 +1,5 @@
-.sln
-.suo
-.csproj
-obj
-MacedonianRedCrossYouth.v12.suo
-MacedonianRedCrossYouth\MacedonianRedCrossYouth.csproj
+*.sln
+*.suo
+*.csproj
+*/obj/*
+*.pdb
