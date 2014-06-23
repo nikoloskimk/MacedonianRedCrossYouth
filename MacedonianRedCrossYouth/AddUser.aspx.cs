@@ -147,8 +147,6 @@ namespace MacedonianRedCrossYouth
             */
         }
 
-        string image_path = "";
-
         protected string UploadFile(Object s, EventArgs e)
         {
             // First we check to see if the user has selected a file

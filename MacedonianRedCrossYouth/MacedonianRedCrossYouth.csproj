@@ -107,13 +107,6 @@
     <None Include="Properties\PublishProfiles\Default Web Site.pubxml" />
     <None Include="Properties\PublishProfiles\MyProfile.pubxml" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Restricted.aspx" />
@@ -129,8 +122,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Activity.cs" />
-    <Compile Include="ActivityType.cs" />
+    <Compile Include="Classes\Activity.cs" />
+    <Compile Include="Classes\ActivityType.cs" />
     <Compile Include="AddActivity.aspx.cs">
       <DependentUpon>AddActivity.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -176,7 +169,7 @@
     <Compile Include="Dokumenti.aspx.designer.cs">
       <DependentUpon>Dokumenti.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Faculty.cs" />
+    <Compile Include="Classes\Faculty.cs" />
     <Compile Include="Korisnik.aspx.cs">
       <DependentUpon>Korisnik.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -205,8 +198,8 @@
     <Compile Include="Master1.Master.designer.cs">
       <DependentUpon>Master1.Master</DependentUpon>
     </Compile>
-    <Compile Include="Nationality.cs" />
-    <Compile Include="Organization.cs" />
+    <Compile Include="Classes\Nationality.cs" />
+    <Compile Include="Classes\Organization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Restricted.aspx.cs">
       <DependentUpon>Restricted.aspx</DependentUpon>
@@ -215,7 +208,7 @@
     <Compile Include="Restricted.aspx.designer.cs">
       <DependentUpon>Restricted.aspx</DependentUpon>
     </Compile>
-    <Compile Include="User.cs" />
+    <Compile Include="Classes\User.cs" />
     <Compile Include="Volonteri.aspx.cs">
       <DependentUpon>Volonteri.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

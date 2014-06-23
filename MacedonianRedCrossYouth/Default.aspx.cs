@@ -133,13 +133,11 @@ namespace MacedonianRedCrossYouth
          }
         protected void btnRefresh_Click(object sender, ImageClickEventArgs e)
         {
-<<<<<<< HEAD
            // Response.Redirect("Default.aspx");            
-=======
             int activity_id = 2;
             string query = "AddUsersActivity.aspx?ID=" + activity_id;
             Response.Redirect(query);
->>>>>>> origin/master
+
         }
     }
 }

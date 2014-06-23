@@ -51,7 +51,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
-
+                Console.Write(err.ToString());
             }
             finally
             {
@@ -81,6 +81,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
+                Console.Write(err.ToString());
 
             }
             finally
@@ -111,7 +112,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
-
+                Console.Write(err.ToString());
             }
             finally
             {
@@ -141,6 +142,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
+                Console.Write(err.ToString());
 
             }
             finally
@@ -171,6 +173,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
+                Console.Write(err.ToString());
 
             }
             finally
@@ -209,7 +212,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
-
+                Console.Write(err.ToString());
             }
             finally
             {
@@ -253,7 +256,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
-
+                Console.Write(err.ToString());
             }
             finally
             {
@@ -283,7 +286,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
-
+                Console.Write(err.ToString());
             }
             finally
             {
@@ -308,7 +311,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
-
+                Console.Write(err.ToString());
             }
             finally
             {
@@ -391,7 +394,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
-                return false;
+                Console.Write(err.ToString());
             }
             finally
             {
@@ -426,7 +429,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
-
+                Console.Write(err.ToString());
             }
             finally
             {
@@ -458,7 +461,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
-
+                Console.Write(err.ToString());
             }
             finally
             {
@@ -490,7 +493,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
-
+                Console.Write(err.ToString());
             }
             finally
             {
@@ -516,7 +519,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
-
+                Console.Write(err.ToString());
             }
             finally
             {
@@ -544,7 +547,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
-
+                Console.Write(err.ToString());
             }
             finally
             {
@@ -576,7 +579,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
-
+                Console.Write(err.ToString());
             }
             finally
             {
@@ -608,7 +611,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
-
+                Console.Write(err.ToString());
             }
             finally
             {
@@ -642,7 +645,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
-
+                Console.Write(err.ToString());
             }
             finally
             {
@@ -676,7 +679,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
-
+                Console.Write(err.ToString());
             }
             finally
             {
@@ -715,7 +718,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
-
+                Console.Write(err.ToString());
             }
             finally
             {
@@ -745,7 +748,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
-
+                Console.Write(err.ToString());
             }
             finally
             {
@@ -777,7 +780,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
-
+                Console.Write(err.ToString());
             }
             finally
             {
@@ -804,7 +807,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
-
+                Console.Write(err.ToString());
             }
             finally
             {
@@ -834,7 +837,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
-
+                Console.Write(err.ToString());
             }
             finally
             {
@@ -861,7 +864,7 @@ namespace MacedonianRedCrossYouth
             }
             catch (Exception err)
             {
-
+                Console.Write(err.ToString());
             }
             finally
             {

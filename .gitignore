@@ -1,5 +1,7 @@
-*.sln
-*.suo
-*.csproj
-*/obj/*
-*.pdb
+MacedonianRedCrossYouth.v12.suo
+MacedonianRedCrossYouth/MacedonianRedCrossYouth.csproj
+MacedonianRedCrossYouth/bin/MacedonianRedCrossYouth.dll
+MacedonianRedCrossYouth/bin/MacedonianRedCrossYouth.pdb
+MacedonianRedCrossYouth/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+MacedonianRedCrossYouth/obj/Debug/MacedonianRedCrossYouth.dll
+MacedonianRedCrossYouth/obj/Debug/MacedonianRedCrossYouth.pdb
