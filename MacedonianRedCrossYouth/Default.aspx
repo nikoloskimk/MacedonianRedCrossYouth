@@ -14,24 +14,20 @@
         .auto-style2 {
             height: 10px;
         }
-        .auto-style3 {
-            height: 20px;
-            width: 550px;
-        }
-        .auto-style4 {
-            height: 10px;
-            width: 534px;
-        }
-    </style>
+        </style>
     <form id="form1" runat="server">
         <div style="width: 550px; margin: auto;">
             <table id="tabela" style="margin: auto;">
                 <tr>
-                    <td colspan="2" style="background-color: #bcbcbc; text-align: center;">Нова активности
+                    <td colspan="2" style="background-color: #bcbcbc; text-align: center;">Листа на активности
                     </td>
                 </tr>
                 <tr class="highlight">
                     <td class="auto-style2"></td>
+                </tr>
+                <tr>
+                    <td class="tdStyle">Форми на дејстување:</td>
+                    <td class="tdStyle">Тип на активности:</td>
                 </tr>
                 <tr>
                     <td class="auto-style1">
@@ -43,12 +39,19 @@
                         </asp:DropDownList>
                     </td>
                 </tr>
-                <tr class="highlight">
-                    <td class="auto-style2"></td>
+               <tr class="highlight">
+                    <td class="auto-style2">
+                        <asp:Label ID="lblFrom" runat="server" Visible="False"></asp:Label>
+                        <asp:Label ID="lblTo" runat="server" Visible="False"></asp:Label>
+                    </td>
+                </tr>
+                 <tr>
+                    <td class="tdStyle">Почетен датум:</td>
+                    <td class="tdStyle">Краен датум:</td>
                 </tr>
                 <tr>
                     <td class="auto-style1">
-                        <asp:TextBox ID="tbFromDate" runat="server" TextMode="Date" AutoPostBack="True"></asp:TextBox>
+                        <asp:TextBox ID="tbFromDate" runat="server" TextMode="Date" AutoPostBack="True" CausesValidation="True"></asp:TextBox>
                     </td>
                     <td class="auto-style1">
                         <asp:TextBox ID="tbToDate" runat="server" TextMode="Date" AutoPostBack="True"></asp:TextBox>

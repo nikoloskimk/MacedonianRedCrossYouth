@@ -13,7 +13,7 @@
     <form runat="server">
         <div style="margin-top: 10px; margin-right: 20px; float: right;">
             <div style="float: left;">
-                <asp:ImageButton ID="btnAddVolonter" runat="server" AlternateText="Додади волонтер" Height="32px" ImageUrl="~/Content/image/1403062270_circle_add_plus.png" OnClick="btnAddVolonter_Click" Width="32px" ToolTip="Додади волонтер"></asp:ImageButton>
+                <asp:ImageButton ID="btnAddVolonter" runat="server" AlternateText="Додади волонтер" Height="32px" ImageUrl="~/Content/image/add.png" OnClick="btnAddVolonter_Click" Width="32px" ToolTip="Додади волонтер"></asp:ImageButton>
             </div>
             <div id="divAdd" style="height: 32px; float: left; padding-top: 7px; padding-left: 5px; cursor: pointer;">
                 <asp:Label Text="Додади волонтер" runat="server" ID="lblAddVolonter"></asp:Label>

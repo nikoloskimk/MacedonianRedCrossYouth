@@ -40,6 +40,24 @@ namespace MacedonianRedCrossYouth {
         protected global::System.Web.UI.WebControls.DropDownList ddActivityTypes;
         
         /// <summary>
+        /// lblFrom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFrom;
+        
+        /// <summary>
+        /// lblTo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTo;
+        
+        /// <summary>
         /// tbFromDate control.
         /// </summary>
         /// <remarks>

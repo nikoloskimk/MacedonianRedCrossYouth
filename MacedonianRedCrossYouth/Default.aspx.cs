@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -25,6 +26,8 @@ namespace MacedonianRedCrossYouth
             {
                 tbFromDate.Text = firstDay.ToLocalTime().ToString("yyyy-MM-dd");
                 tbToDate.Text = lastDay.ToLocalTime().ToString("yyyy-MM-dd");
+                lblFrom.Text = firstDay.ToLocalTime().ToString("yyyy-MM-dd");
+                lblTo.Text = lastDay.ToLocalTime().ToString("yyyy-MM-dd");
                 if (Session["organization_id"] != null)
                 {
                     List<Organization> organizations = DatabaseManagement.getChildOrganizations((int)Session["organization_id"]);
@@ -69,9 +72,49 @@ namespace MacedonianRedCrossYouth
                 //DateTime month = new DateTime(int.Parse(parts[0]), DateTime.Now.Month, 1);
                 //RangeValidator1.MaximumValue = lastDay.ToLocalTime().ToString("yyyy-MM-dd");
                 //RangeValidator1.MinimumValue = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-                IspolniAktivnosti(true);
                 tbDetalis.Visible = false;
                 gvActivnosti.SelectedIndex = -1;
+                if (date_to_validate(tbFromDate.Text))
+                {
+                    lblFrom.Text = tbFromDate.Text;
+                    
+                }
+                else
+                {
+                    DateTime lastChangeFrom = Convert.ToDateTime(lblFrom.Text);
+                    DateTime temp1 = new DateTime(lastChangeFrom.Year, lastChangeFrom.Month, 1);
+                    DateTime temp2 = temp1.AddMonths(1).AddDays(-1);
+                    if (lastChangeFrom.CompareTo(temp2) == 0)
+                    {
+                        tbFromDate.Text = temp1.ToLocalTime().ToString("yyyy-MM-dd");
+                    }
+                    else
+                    {
+                        tbFromDate.Text = temp2.ToLocalTime().ToString("yyyy-MM-dd");
+                    }
+                    lblFrom.Text = tbFromDate.Text;
+                }
+                if (date_to_validate(tbToDate.Text))
+                {
+                    lblTo.Text = tbToDate.Text;
+                }
+                else
+                {
+                    DateTime lastChangeTo = Convert.ToDateTime(lblTo.Text);
+                    DateTime temp1 = new DateTime(lastChangeTo.Year, lastChangeTo.Month, 1);
+                    DateTime temp2 = temp1.AddMonths(1).AddDays(-1);
+                    if (lastChangeTo.CompareTo(temp1) == 0)
+                    {
+                        tbToDate.Text = temp2.ToLocalTime().ToString("yyyy-MM-dd");
+                    }
+                    else if (lastChangeTo.CompareTo(temp2) == 0)
+                    {
+                        tbToDate.Text = temp1.ToLocalTime().ToString("yyyy-MM-dd");
+                    }
+                    lblTo.Text = tbToDate.Text;
+                }
+                
+                IspolniAktivnosti(true);
             }
         }
 
@@ -145,5 +188,21 @@ namespace MacedonianRedCrossYouth
             Response.Redirect(query);
 
         }
+
+        protected bool date_to_validate(string date_to_validate)
+        {
+            DateTime date;
+            if(DateTime.TryParseExact(date_to_validate, "yyyy/MM/dd",new CultureInfo("en-US"),
+                              DateTimeStyles.None, out date))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
     }
 }
