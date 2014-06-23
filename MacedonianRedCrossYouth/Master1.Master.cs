@@ -12,8 +12,7 @@ namespace CrvenKrst
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string path = HttpContext.Current.Request.Url.AbsolutePath;
-
+            string path = HttpContext.Current.Request.Url.LocalPath;
             switch (path)
             {
                 case "/Volonteri.aspx":
