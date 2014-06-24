@@ -102,10 +102,10 @@ namespace MacedonianRedCrossYouth
             string username = tbUsername.Text;
             string password = tbPassword.Text;
             Boolean gender;
-            if(ddlGender.SelectedIndex == 0){
+            if(ddlGender.SelectedIndex == 1){
                 gender = true;
             }
-            else{
+            else {
                 gender = false;
             }
             DateTime birth_date = Convert.ToDateTime(tbDatumRaganje.Text);

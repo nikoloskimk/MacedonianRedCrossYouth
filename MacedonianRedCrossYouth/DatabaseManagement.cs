@@ -367,7 +367,7 @@ namespace MacedonianRedCrossYouth
             komanda.Parameters.AddWithValue("@organization_id", organization_id);
 
             if (image_path == null)
-                komanda.Parameters.AddWithValue("@image_path", DBNull.Value);
+                komanda.Parameters.AddWithValue("@image_path", "default.jpg");
             else
                 komanda.Parameters.AddWithValue("@image_path", image_path);
 
@@ -471,6 +471,35 @@ namespace MacedonianRedCrossYouth
             return ds;
         }
 
+        public static DataSet getMembers(int organization_id)
+        {
+            SqlConnection konekcija = getConnection();
+            string sqlString = "SELECT * FROM Users WHERE organization_id=@organization_id AND is_member=1";
+
+
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            komanda.Parameters.AddWithValue("@organization_id", organization_id);
+
+            SqlDataAdapter adapter = new SqlDataAdapter(komanda);
+            DataSet ds = new DataSet();
+
+            try
+            {
+                konekcija.Open();
+                adapter.Fill(ds, "Users");
+                return ds;
+            }
+            catch (Exception err)
+            {
+                Console.Write(err.ToString());
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+            return ds;
+        }
+
         public static DataSet getActivities(int volonter_id)
         {
             SqlConnection konekcija = getConnection();
@@ -490,6 +519,67 @@ namespace MacedonianRedCrossYouth
             {
                 konekcija.Open();
                 adapter.Fill(ds, "Users");
+                return ds;
+            }
+            catch (Exception err)
+            {
+                Console.Write(err.ToString());
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+            return ds;
+        }
+
+        public static List<int> getFeesList(int user_id)
+        {
+            List<int> fees = new List<int>();
+            SqlConnection konekcija = getConnection();
+            string sqlString = "SELECT year FROM Fees WHERE user_id = @user_id";
+
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            komanda.Parameters.AddWithValue("@user_id", user_id);
+
+            SqlDataAdapter adapter = new SqlDataAdapter(komanda);
+            DataSet ds = new DataSet();
+
+            try
+            {
+                konekcija.Open();
+                SqlDataReader citac = komanda.ExecuteReader();
+                while (citac.Read())
+                {
+                    int year = int.Parse(citac["year"].ToString());
+                    fees.Add(year);
+                }
+            }
+            catch (Exception err)
+            {
+                Console.Write(err.ToString());
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+            return fees;
+        }
+
+        public static DataSet getFees(int user_id)
+        {
+            SqlConnection konekcija = getConnection();
+            string sqlString = "SELECT year FROM Fees WHERE user_id = @user_id";
+
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            komanda.Parameters.AddWithValue("@user_id", user_id);
+
+            SqlDataAdapter adapter = new SqlDataAdapter(komanda);
+            DataSet ds = new DataSet();
+
+            try
+            {
+                konekcija.Open();
+                adapter.Fill(ds, "Fees");
                 return ds;
             }
             catch (Exception err)
@@ -822,6 +912,100 @@ namespace MacedonianRedCrossYouth
             return users;
         }
 
+        public static List<User> getNonMembers(int organization_id)
+        {
+            List<User> users = new List<User>();
+            SqlConnection konekcija = getConnection();
+            string sqlString = "SELECT * FROM Users WHERE organization_id=@organization_id and is_member=0";
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            komanda.Parameters.AddWithValue("@organization_id", organization_id);
+            try
+            {
+                konekcija.Open();
+                SqlDataReader citac = komanda.ExecuteReader();
+                while (citac.Read())
+                {
+                    User u = new User();
+                    u.user_id = int.Parse(citac["user_id"].ToString());
+                    u.first_name = citac["first_name"].ToString();
+                    u.last_name = citac["last_name"].ToString();
+
+                    u.organization_id = int.Parse(citac["organization_id"].ToString());
+                    users.Add(u);
+                }
+            }
+            catch (Exception err)
+            {
+                Console.Write(err.ToString());
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+
+            return users;
+        }
+
+        public static List<User> getMembersList(int organization_id)
+        {
+            List<User> users = new List<User>();
+            SqlConnection konekcija = getConnection();
+            string sqlString = "SELECT * FROM Users WHERE organization_id=@organization_id and is_member=1";
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            komanda.Parameters.AddWithValue("@organization_id", organization_id);
+            try
+            {
+                konekcija.Open();
+                SqlDataReader citac = komanda.ExecuteReader();
+                while (citac.Read())
+                {
+                    User u = new User();
+                    u.user_id = int.Parse(citac["user_id"].ToString());
+                    u.first_name = citac["first_name"].ToString();
+                    u.last_name = citac["last_name"].ToString();
+
+                    u.organization_id = int.Parse(citac["organization_id"].ToString());
+                    users.Add(u);
+                }
+            }
+            catch (Exception err)
+            {
+                Console.Write(err.ToString());
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+
+            return users;
+        }
+
+        public static Boolean addMember(int user_id, DateTime start_date)
+        {
+            SqlConnection konekcija = getConnection();
+            string sqlString = "UPDATE Users SET is_member=1, member_since=@member_since WHERE user_id=@user_id";
+
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            komanda.Parameters.AddWithValue("@user_id", user_id);
+            komanda.Parameters.AddWithValue("@member_since", start_date);
+
+            try
+            {
+                konekcija.Open();
+                int count = komanda.ExecuteNonQuery();
+                return count == 1;
+            }
+            catch (Exception err)
+            {
+                Console.Write(err.ToString());
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+            return false;
+        }
+
         public static List<User> getAllUsers()
         {
             List<User> users = new List<User>();
@@ -1033,5 +1217,33 @@ namespace MacedonianRedCrossYouth
             }
             return false;
         }
+
+        public static Boolean AddFee(int user_id, int year)
+        {
+            SqlConnection konekcija = getConnection();
+            string sqlString = "INSERT INTO Fees (user_id, year)" +
+                " VALUES (@user_id, @year)";
+
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            komanda.Parameters.AddWithValue("@user_id", user_id);
+            komanda.Parameters.AddWithValue("@year", year);
+
+            try
+            {
+                konekcija.Open();
+                int count = komanda.ExecuteNonQuery();
+                return count == 1;
+            }
+            catch (Exception err)
+            {
+                Console.Write(err.ToString());
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+            return false;
+        }
+
     }
 }

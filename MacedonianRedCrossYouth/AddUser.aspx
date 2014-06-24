@@ -141,7 +141,7 @@
                         </asp:DropDownList>
                     </td>
                     <td class="tdStyle">
-                        <asp:CheckBox ID="Aktiven" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" Text="Да / Не" TextAlign="Right" />
+                        <asp:CheckBox ID="Aktiven" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" Text="Активен" TextAlign="Right" Checked="True" />
                     </td>
 
                 </tr>
@@ -224,7 +224,7 @@
                 </tr>
                 <tr>
                     <td class="tdStyle">
-                        <asp:CheckBox ID="Clen" runat="server" Text="Да / Не" AutoPostBack="True" OnCheckedChanged="Clen_CheckedChanged" />
+                        <asp:CheckBox ID="Clen" runat="server" Text="Член" AutoPostBack="True" OnCheckedChanged="Clen_CheckedChanged" />
                     </td>
                     <td class="tdStyle">
                         <asp:TextBox ID="tbMemberSince" runat="server" Width="220" Enabled="False" TextMode="Date"></asp:TextBox>

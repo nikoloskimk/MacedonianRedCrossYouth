@@ -62,6 +62,7 @@ namespace MacedonianRedCrossYouth
                     }
                     lblMessage.Visible = true;
                 }
+
                 IspolniVolonteri(organization_id);
 
                 if (!DatabaseManagement.canAddVolonteri(user_id) && !DatabaseManagement.isUserAdmin(user_id))

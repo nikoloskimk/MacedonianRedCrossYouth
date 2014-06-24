@@ -59,6 +59,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddActivity.aspx" />
+    <Content Include="AddFee.aspx" />
+    <Content Include="AddMember.aspx" />
     <Content Include="AddUser.aspx" />
     <Content Include="AddUsersActivity.aspx" />
     <Content Include="Clenovi.aspx" />
@@ -121,6 +123,20 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddFee.aspx.cs">
+      <DependentUpon>AddFee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddFee.aspx.designer.cs">
+      <DependentUpon>AddFee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddMember.aspx.cs">
+      <DependentUpon>AddMember.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddMember.aspx.designer.cs">
+      <DependentUpon>AddMember.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Classes\Activity.cs" />
     <Compile Include="Classes\ActivityType.cs" />
     <Compile Include="AddActivity.aspx.cs">

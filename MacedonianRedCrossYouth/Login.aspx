@@ -87,7 +87,7 @@
     <div>
         <nav class="navbar navbar-default navbar-bottom" style="border-top-color: #929292; color: #343233; margin-bottom: -15px;" role="note">
             <div class="navbar-footer">
-                <p style="text-align: center; vertical-align: central; padding-top: 5px">Црвен Крст на Република Македонија © 2014. Сите права се задржани.</p>
+                <p style="text-align: center; vertical-align: central; padding-top: 5px">Црвен крст на Република Македонија © 2014. Сите права се задржани.</p>
             </div>
         </nav>
 

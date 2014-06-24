@@ -70,7 +70,7 @@
         </asp:ContentPlaceHolder>
     </div>
     <div id="footer" class="navbar navbar-default">
-        <p style="text-align: center; vertical-align: central; padding-top: 5px">Црвен Крст на Република Македонија © 2014. Сите права се задржани.</p>
+        <p style="text-align: center; vertical-align: central; padding-top: 5px">Црвен крст на Република Македонија © 2014. Сите права се задржани.</p>
     </div>
 
 </body>

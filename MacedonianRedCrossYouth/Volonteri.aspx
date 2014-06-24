@@ -43,7 +43,7 @@
                 <asp:BoundField DataField="birth_date" DataFormatString="{0:d}" HeaderText="Датум на раѓање">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="organization_name" HeaderText="Организација" />
+                <asp:BoundField DataField="organization_name" HeaderText="Организација" Visible="False" />
                 <asp:CheckBoxField DataField="is_member" HeaderText="Член">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:CheckBoxField>
