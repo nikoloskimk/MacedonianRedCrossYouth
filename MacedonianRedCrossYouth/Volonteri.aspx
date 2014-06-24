@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master1.Master" AutoEventWireup="true" CodeBehind="Volonteri.aspx.cs" Inherits="MacedonianRedCrossYouth.Volonteri" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentplaceHolder1" runat="server">
+    <link href="content/css/select2.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/select2.js"></script>
     <style>
         td {
             padding: 2px;
@@ -96,8 +98,14 @@
         </asp:GridView>
     </form>
     <script type="text/javascript">
-        $("#divAdd").click(function (d) {
-            window.location = "AddUser.aspx";
+       
+
+        $(function () {
+            $("#divAdd").click(function (d) {
+                window.location = "AddUser.aspx";
+            });
+
+            $("#ContentplaceHolder1_ddOrganizations").select2();
         });
     </script>
 </asp:Content>

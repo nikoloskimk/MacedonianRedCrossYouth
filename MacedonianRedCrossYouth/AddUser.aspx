@@ -57,6 +57,7 @@
                         <asp:RequiredFieldValidator ID="rfVPhone" runat="server" ControlToValidate="tbPhone" Display="None" ErrorMessage="Полето за телефон е задолжително"></asp:RequiredFieldValidator>
                         <asp:RequiredFieldValidator ID="rfVUsername" runat="server" ControlToValidate="tbUsername" Display="None" ErrorMessage="Полето за корисничко име е задолжително"></asp:RequiredFieldValidator>
                         <asp:RequiredFieldValidator ID="rfVPassword" runat="server" ControlToValidate="tbPassword" Display="None" ErrorMessage="Полето за лозинка е задолжително"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="tbPhone" Display="None" ErrorMessage="Формат на телефон: 07ххххххх" ValidationExpression="\d{9}"></asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>
@@ -185,7 +186,7 @@
                 </tr>
                 <tr>
                     <td class="tdStyle">
-                        <asp:TextBox ID="tbPhone" runat="server" Width="220"></asp:TextBox>
+                        <asp:TextBox ID="tbPhone" runat="server" Width="220" TextMode="Phone"></asp:TextBox>
                     </td>
                     <td class="tdStyle">
                         <asp:TextBox ID="tbEmail" runat="server" Width="220" TextMode="Email"></asp:TextBox>
