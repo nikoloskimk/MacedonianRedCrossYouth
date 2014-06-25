@@ -170,15 +170,25 @@ namespace MacedonianRedCrossYouth
 
         protected void gvActivnosti_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ShowDetails();
+            DateTime end_date = Convert.ToDateTime(gvActivnosti.SelectedRow.Cells[2].Text);
+            ShowDetails(end_date);
         }
 
-        private void ShowDetails()
+        private void ShowDetails(DateTime end_date)
         {
-            int activity_id = int.Parse(gvActivnosti.DataKeys[gvActivnosti.SelectedIndex].Value.ToString());
-            int count = DatabaseManagement.getActivityUsersCount(activity_id);
-            tbDetalis.Text = "На активноста со наслов \"" + gvActivnosti.SelectedRow.Cells[0].Text + "\" присуствуваа " + count.ToString() + " волонтери.";
-            tbDetalis.Visible = true;
+            if (end_date.CompareTo(DateTime.Now) < 0) {
+                int activity_id = int.Parse(gvActivnosti.DataKeys[gvActivnosti.SelectedIndex].Value.ToString());
+                int count = DatabaseManagement.getActivityUsersCount(activity_id);
+                tbDetalis.Text = "На активноста со наслов \"" + gvActivnosti.SelectedRow.Cells[0].Text + "\" присуствуваа " + count.ToString() + " волонтери.";
+                tbDetalis.Visible = true;
+                btnEdit.Visible = true;
+            }
+            else
+            {
+                btnEdit.Visible = false;
+                tbDetalis.Text = "Активноста сеуште не е завршена за да можетеда додадете извештај";
+                tbDetalis.Visible = true;
+            }
          }
         protected void btnRefresh_Click(object sender, ImageClickEventArgs e)
         {

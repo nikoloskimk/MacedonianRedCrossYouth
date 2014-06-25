@@ -67,10 +67,19 @@
                         <asp:GridView ID="gvActivnosti" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" OnSelectedIndexChanged="gvActivnosti_SelectedIndexChanged" DataKeyNames="activity_id" HorizontalAlign="Center" Width="550px" ViewStateMode="Disabled" >
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
-                                <asp:BoundField DataField="title" HeaderText="Наслов на активност" />
-                                <asp:BoundField DataField="start_time" HeaderText="Време на започнување" />
-                                <asp:BoundField DataField="end_time" HeaderText="Време на завршување" />
+                                <asp:BoundField DataField="title" HeaderText="Наслов на активност" >
+                                <ItemStyle HorizontalAlign="Center" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="start_time" HeaderText="Време на започнување" >
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="Center" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="end_time" HeaderText="Време на завршување" >
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="Center" />
+                                </asp:BoundField>
                                 <asp:CommandField HeaderText="Детали" SelectImageUrl="~/Content/image/details.png" SelectText="Детали" ShowSelectButton="True">
+                                    <HeaderStyle HorizontalAlign="Center" />
                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:CommandField>
                             </Columns>
@@ -99,7 +108,7 @@
                 </tr>
             </table>
             <asp:ImageButton ID="btnAdd" runat="server" Height="24px" ImageUrl="~/Content/image/add.png" Width="24px" OnClick="ImageButton1_Click" ImageAlign="Middle" />
-            <asp:ImageButton ID="btnEdit" runat="server" Height="24px" ImageUrl="~/Content/image/edit.png" Width="24px" OnClick="btnRefresh_Click" ImageAlign="Middle" />
+            <asp:ImageButton ID="btnEdit" runat="server" Height="24px" ImageUrl="~/Content/image/edit.png" Width="24px" OnClick="btnRefresh_Click" ImageAlign="Middle" Visible="False" />
         </div>
     </form>
 </asp:Content>
