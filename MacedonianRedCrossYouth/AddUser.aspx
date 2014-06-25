@@ -213,7 +213,7 @@
                         <asp:TextBox ID="tbUsername" runat="server" Width="220"></asp:TextBox>
                     </td>
                     <td class="tdStyle">
-                        <asp:TextBox ID="tbPassword" runat="server" Width="220"></asp:TextBox>
+                        <asp:TextBox ID="tbPassword" runat="server" Width="220" TextMode="Password"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>

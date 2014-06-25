@@ -65,7 +65,9 @@ namespace MacedonianRedCrossYouth
             List<int> fees = DatabaseManagement.getFeesList(user_id);
 
             lstFees.Items.Clear();
-            for (int i = 2014; i > 2010; i--)
+            int firstYear = DatabaseManagement.getFirstYearMember(user_id);
+            int currentYear = DateTime.Now.Year;
+            for (int i = currentYear; i >= firstYear; i--)
             {
                 if (!fees.Contains(i))
                 {

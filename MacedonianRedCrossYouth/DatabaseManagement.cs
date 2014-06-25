@@ -1245,5 +1245,34 @@ namespace MacedonianRedCrossYouth
             return false;
         }
 
+
+
+        public static int getFirstYearMember(int user_id) {
+
+            SqlConnection konekcija = getConnection();
+            string sqlString = "SELECT year(member_since) as year_start FROM Users WHERE user_id=@user_id";
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            komanda.Parameters.AddWithValue("@user_id", user_id);
+            try
+            {
+                konekcija.Open();
+                SqlDataReader citac = komanda.ExecuteReader();
+                if(citac.Read())
+                {
+                    int year = int.Parse(citac["year_start"].ToString());
+                    return year;
+                }
+            }
+            catch (Exception err)
+            {
+                Console.Write(err.ToString());
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+
+            return 2014;
+        }
     }
 }

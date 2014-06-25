@@ -29,7 +29,7 @@
             <asp:Label ID="lblMessage" runat="server" Visible="False" ForeColor="Green"></asp:Label>
         </div>
 
-        <asp:GridView ID="gvVolonteri" runat="server" AutoGenerateColumns="False" CellPadding="4" AllowPaging="True" DataKeyNames="user_id" OnPageIndexChanging="gvVolonteri_PageIndexChanging" OnSelectedIndexChanged="gvVolonteri_SelectedIndexChanged" HorizontalAlign="Center" ForeColor="#333333" ShowHeaderWhenEmpty="True">
+        <asp:GridView ID="gvVolonteri" runat="server" AutoGenerateColumns="False" CellPadding="4" AllowPaging="True" DataKeyNames="user_id" OnPageIndexChanging="gvVolonteri_PageIndexChanging" OnSelectedIndexChanged="gvVolonteri_SelectedIndexChanged" HorizontalAlign="Center" ForeColor="#333333" ShowHeaderWhenEmpty="True" PageSize="5">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:TemplateField HeaderText="Реден број">
@@ -66,7 +66,7 @@
             <SortedDescendingHeaderStyle BackColor="#820000" />
         </asp:GridView>
         <br />
-        <asp:GridView ID="gvAktivnostiVolonter" runat="server" CellPadding="4" AutoGenerateColumns="False" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" Visible="False" HorizontalAlign="Center" ShowHeaderWhenEmpty="True" ForeColor="Black" GridLines="Vertical">
+        <asp:GridView ID="gvAktivnostiVolonter" runat="server" CellPadding="4" AutoGenerateColumns="False" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" Visible="False" HorizontalAlign="Center" ForeColor="Black" GridLines="Vertical" EmptyDataText="Волонтерот нема учествувано на ниедна активност">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:TemplateField HeaderText="Реден број">

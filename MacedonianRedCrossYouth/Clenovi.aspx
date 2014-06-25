@@ -3,7 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentplaceHolder1" runat="server">
     <link href="content/css/select2.css" rel="stylesheet" type="text/css" />
     <script src="Scripts/select2.js"></script>
-
+    <style>
+        td, th {
+            padding: 2px;
+        }
+    </style>
     <form runat="server">
         <div style="margin-top: 10px; margin-right: 20px; float: right;">
             <div style="float: left;">
@@ -27,7 +31,7 @@
         </div>
         <div style="clear: both"></div>
         <div>
-            <asp:GridView ID="gvClenovi" runat="server" AutoGenerateColumns="False" DataKeyNames="user_id" OnSelectedIndexChanged="gvClenovi_SelectedIndexChanged" ShowHeaderWhenEmpty="True" CellPadding="4" ForeColor="#333333" GridLines="None" HorizontalAlign="Center">
+            <asp:GridView ID="gvClenovi" runat="server" AutoGenerateColumns="False" DataKeyNames="user_id" OnSelectedIndexChanged="gvClenovi_SelectedIndexChanged" ShowHeaderWhenEmpty="True" CellPadding="4" ForeColor="#333333" HorizontalAlign="Center" AllowPaging="True" CellSpacing="5" OnPageIndexChanging="gvClenovi_PageIndexChanging" PageSize="5">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                     <asp:TemplateField HeaderText="Реден број">
@@ -61,7 +65,7 @@
 
             </asp:GridView>
             <br />
-            <asp:GridView ID="gvClenarina" runat="server" ShowHeaderWhenEmpty="True" Visible="False" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" HorizontalAlign="Center">
+            <asp:GridView ID="gvClenarina" runat="server" Visible="False" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" HorizontalAlign="Center" EmptyDataText="Членот нема платено ниедна членарина">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                     <asp:BoundField DataField="year" HeaderText="Година" />

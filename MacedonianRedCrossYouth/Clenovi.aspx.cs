@@ -67,14 +67,6 @@ namespace MacedonianRedCrossYouth
             ViewState["clenovi"] = ds;
         }
 
-        public void IspolniClenarina(int organization_id)
-        {
-            DataSet ds = DatabaseManagement.getMembers(organization_id);
-            gvClenovi.DataSource = ds;
-            gvClenovi.DataBind();
-            ViewState["clenovi"] = ds;
-        }
-
         protected void ddOrganizations_SelectedIndexChanged(object sender, EventArgs e)
         {
             int newID = int.Parse(ddOrganizations.SelectedItem.Value);
@@ -135,6 +127,17 @@ namespace MacedonianRedCrossYouth
             DataSet ds = DatabaseManagement.getFees(volonter_id);
             gvClenarina.DataSource = ds;
             gvClenarina.DataBind();
+        }
+
+        protected void gvClenovi_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvClenovi.PageIndex = e.NewPageIndex;
+            gvClenovi.SelectedIndex = -1;
+            DataSet ds = ViewState["clenovi"] as DataSet;
+            gvClenovi.DataSource = ds;
+            gvClenovi.DataBind();
+
+            gvClenarina.Visible = false;
         }
 
     }

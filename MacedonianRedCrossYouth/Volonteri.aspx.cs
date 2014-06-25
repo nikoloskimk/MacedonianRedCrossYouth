@@ -111,6 +111,7 @@ namespace MacedonianRedCrossYouth
             DataSet ds = ViewState["volonteri"] as DataSet;
             gvVolonteri.DataSource = ds;
             gvVolonteri.DataBind();
+            gvAktivnostiVolonter.Visible = false;
         }
 
         protected void ddOrganizations_SelectedIndexChanged(object sender, EventArgs e)
