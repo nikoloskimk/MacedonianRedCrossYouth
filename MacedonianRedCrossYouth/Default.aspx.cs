@@ -113,7 +113,7 @@ namespace MacedonianRedCrossYouth
                     lblTo.Text = tbToDate.Text;
                 }
                 tbDetalis.Visible = false;
-                gvActivnosti.SelectedIndex = -1;
+                //gvActivnosti.SelectedIndex = -1;
                 IspolniAktivnosti(true);
             }
         }
@@ -190,13 +190,13 @@ namespace MacedonianRedCrossYouth
                 tbDetalis.Visible = true;
             }
          }
-        protected void btnRefresh_Click(object sender, ImageClickEventArgs e)
+       
+
+        private void editActivity()
         {
-           // Response.Redirect("Default.aspx");            
-            int activity_id = 2;
+            int activity_id = (int)gvActivnosti.DataKeys[gvActivnosti.SelectedIndex].Value;
             string query = "AddUsersActivity.aspx?ID=" + activity_id;
             Response.Redirect(query);
-
         }
 
         protected bool date_to_validate(string date_to_validate)
@@ -211,6 +211,11 @@ namespace MacedonianRedCrossYouth
             {
                 return false;
             }
+        }
+
+        protected void btnEdit_Click(object sender, ImageClickEventArgs e)
+        {
+            editActivity();
         }
 
 

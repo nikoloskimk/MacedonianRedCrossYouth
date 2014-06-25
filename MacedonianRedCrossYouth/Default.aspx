@@ -108,7 +108,7 @@
                 </tr>
             </table>
             <asp:ImageButton ID="btnAdd" runat="server" Height="24px" ImageUrl="~/Content/image/add.png" Width="24px" OnClick="ImageButton1_Click" ImageAlign="Middle" />
-            <asp:ImageButton ID="btnEdit" runat="server" Height="24px" ImageUrl="~/Content/image/edit.png" Width="24px" OnClick="btnRefresh_Click" ImageAlign="Middle" Visible="False" />
+            <asp:ImageButton ID="btnEdit" runat="server" Height="24px" ImageUrl="~/Content/image/edit.png" Width="24px" ImageAlign="Middle" Visible="False" OnClientClick="editActivity(); return true;" OnClick="btnEdit_Click" />
         </div>
     </form>
 </asp:Content>
