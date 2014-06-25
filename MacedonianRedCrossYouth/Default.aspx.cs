@@ -72,8 +72,7 @@ namespace MacedonianRedCrossYouth
                 //DateTime month = new DateTime(int.Parse(parts[0]), DateTime.Now.Month, 1);
                 //RangeValidator1.MaximumValue = lastDay.ToLocalTime().ToString("yyyy-MM-dd");
                 //RangeValidator1.MinimumValue = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-                tbDetalis.Visible = false;
-                gvActivnosti.SelectedIndex = -1;
+                
                 if (date_to_validate(tbFromDate.Text))
                 {
                     lblFrom.Text = tbFromDate.Text;
@@ -113,7 +112,8 @@ namespace MacedonianRedCrossYouth
                     }
                     lblTo.Text = tbToDate.Text;
                 }
-                
+                tbDetalis.Visible = false;
+                gvActivnosti.SelectedIndex = -1;
                 IspolniAktivnosti(true);
             }
         }
