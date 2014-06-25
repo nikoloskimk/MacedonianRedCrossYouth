@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddActivity.aspx" />
+    <Content Include="AddDocument.aspx" />
     <Content Include="AddFee.aspx" />
     <Content Include="AddMember.aspx" />
     <Content Include="AddUser.aspx" />
@@ -123,6 +124,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddDocument.aspx.cs">
+      <DependentUpon>AddDocument.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddDocument.aspx.designer.cs">
+      <DependentUpon>AddDocument.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddFee.aspx.cs">
       <DependentUpon>AddFee.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

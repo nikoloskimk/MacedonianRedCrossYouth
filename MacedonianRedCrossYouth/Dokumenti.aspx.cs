@@ -11,7 +11,25 @@ namespace MacedonianRedCrossYouth
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["user_id"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
 
+            if (!IsPostBack)
+            {
+                int user_id = int.Parse(Session["user_id"].ToString());
+                if(DatabaseManagement.isUserAdmin(user_id)) {
+                    lblAddDocument.Visible = true;
+                    btnAddDocument.Visible = true;
+                }
+
+            }
+        }
+
+        protected void btnAddDocument_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("AddDocument.aspx");
         }
     }
 }
