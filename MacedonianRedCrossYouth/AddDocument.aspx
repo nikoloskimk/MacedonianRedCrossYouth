@@ -15,13 +15,17 @@
                 </td>
                 <td>
                     <asp:TextBox ID="tbIme" runat="server" Width="300px"></asp:TextBox>
+                    <br />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbIme" Display="Dynamic" ErrorMessage="Ве молиме внесете име на документот" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
                 <td>Полиса на документот:
                 </td>
                 <td>
-                    <asp:TextBox ID="TextBox1" runat="server" Width="300px"></asp:TextBox>
+                    <asp:TextBox ID="tbPolisa" runat="server" Width="300px"></asp:TextBox>
+                    <br />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbPolisa" Display="Dynamic" ErrorMessage="Ве молиме внесете полиса на документот" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -29,6 +33,7 @@
                 </td>
                 <td>
                     <asp:FileUpload ID="FileUpload1" runat="server" Width="300px" />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="FileUpload1" Display="Dynamic" ErrorMessage="Ве молиме прикачете документ" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr style="text-align: center;">

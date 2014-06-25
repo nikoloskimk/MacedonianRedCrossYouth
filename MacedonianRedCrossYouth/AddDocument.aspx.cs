@@ -30,18 +30,32 @@ namespace MacedonianRedCrossYouth
 
         protected void btnUpload_Click(object sender, EventArgs e)
         {
-            Boolean b = UploadFile(sender, e);
-            if (b)
+            String b = UploadFile(sender, e);
+            if (b != null)
             {
-                lblInfo.Text = "Фајлот е успешно зачуван.";
+                int user_id = int.Parse(Session["user_id"].ToString());
+                Boolean c = DatabaseManagement.InsertDocument(b, tbPolisa.Text, tbIme.Text, DateTime.Now, user_id);
+                if (c)
+                {
+                    lblInfo.Text = "Фајлот е успешно зачуван.";
+                    tbIme.Text = "";
+                    tbPolisa.Text = "";
+                    lblInfo.ForeColor = System.Drawing.Color.Green;
+                }
+                else
+                {
+                    lblInfo.Text = "Настана грешка при зачувување на фајлот.";
+                    lblInfo.ForeColor = System.Drawing.Color.Red;
+                }
             }
             else
             {
                 lblInfo.Text = "Настана грешка при зачувување на фајлот.";
+                lblInfo.ForeColor = System.Drawing.Color.Red;
             }
         }
 
-        protected Boolean UploadFile(Object s, EventArgs e)
+        protected String UploadFile(Object s, EventArgs e)
         {
             // First we check to see if the user has selected a file
             if (FileUpload1.HasFile)
@@ -93,11 +107,11 @@ namespace MacedonianRedCrossYouth
 
                 FileUpload1.SaveAs(directory + fileName);
 
-                return true;
+                return fileName;
             }
             else
             {
-                return false;
+                return null;
             }
         }
 

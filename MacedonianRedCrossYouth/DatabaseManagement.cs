@@ -1039,6 +1039,39 @@ namespace MacedonianRedCrossYouth
             return users;
         }
 
+        public static List<Document> getAllDocuments()
+        {
+            List<Document> documents = new List<Document>();
+            SqlConnection konekcija = getConnection();
+            string sqlString = "SELECT * FROM Documents";
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+
+            try
+            {
+                konekcija.Open();
+                SqlDataReader citac = komanda.ExecuteReader();
+                while (citac.Read())
+                {
+                    int id = int.Parse(citac["document_id"].ToString());
+                    string path = citac["document_path"].ToString();
+                    string title = citac["title"].ToString();
+                    Document d = new Document(id, path, title);
+
+                    documents.Add(d);
+                }
+            }
+            catch (Exception err)
+            {
+                Console.Write(err.ToString());
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+
+            return documents;
+        }
+
         public static List<Roles> getRolesForUser(int user_id)
         {
             List<Roles> roles = new List<Roles>();
@@ -1245,8 +1278,6 @@ namespace MacedonianRedCrossYouth
             return false;
         }
 
-
-
         public static int getFirstYearMember(int user_id) {
 
             SqlConnection konekcija = getConnection();
@@ -1273,6 +1304,37 @@ namespace MacedonianRedCrossYouth
             }
 
             return 2014;
+        }
+
+        public static Boolean InsertDocument(string b, string p1, string p2, DateTime dateTime, int user_id)
+        {
+            SqlConnection konekcija = getConnection();
+            string sqlString = "INSERT INTO Documents (document_path, policy, title, " +
+                " date_created, user_id)" +
+                " VALUES (@document_path, @policy, @title, @date_created, @user_id)";
+
+            SqlCommand komanda = new SqlCommand(sqlString, konekcija);
+            komanda.Parameters.AddWithValue("@document_path", b);
+            komanda.Parameters.AddWithValue("@policy", p1);
+            komanda.Parameters.AddWithValue("@title", p2);
+            komanda.Parameters.AddWithValue("@date_created", dateTime);
+            komanda.Parameters.AddWithValue("@user_id", user_id);
+
+            try
+            {
+                konekcija.Open();
+                int count = komanda.ExecuteNonQuery();
+                return count == 1;
+            }
+            catch (Exception err)
+            {
+                Console.Write(err.ToString());
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+            return false;
         }
     }
 }

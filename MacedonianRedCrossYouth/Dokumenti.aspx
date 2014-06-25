@@ -10,6 +10,11 @@
             </div>
         </div>
         <div style="clear: both;"></div>
+        <div>
+            <asp:Panel ID="pnlDocuments" runat="server">
+                
+            </asp:Panel>
+        </div>
     </form>
         <script type="text/javascript">
             $(function () {

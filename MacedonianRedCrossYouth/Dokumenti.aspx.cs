@@ -24,6 +24,15 @@ namespace MacedonianRedCrossYouth
                     btnAddDocument.Visible = true;
                 }
 
+                List<Document> documents = DatabaseManagement.getAllDocuments();
+
+                foreach (Document d in documents)
+                {
+                    LiteralControl lc = new LiteralControl("<a href=\"UploadedFiles/documents/" + d.getPath() + "\">" + d.getTitle() + "</a>");
+                    pnlDocuments.Controls.Add(lc);
+                    pnlDocuments.Controls.Add(new LiteralControl("<br />"));
+
+                }
             }
         }
 

@@ -168,6 +168,7 @@
     <Compile Include="AddUsersActivity.aspx.designer.cs">
       <DependentUpon>AddUsersActivity.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Document.cs" />
     <Compile Include="Clenovi.aspx.cs">
       <DependentUpon>Clenovi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
